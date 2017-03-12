@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.WebApp", "Lms.WebApp\Lms.WebApp.csproj", "{999402B3-E6FB-404B-AAD7-731693DEA107}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Domain", "Lms.Domain\Lms.Domain.csproj", "{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.Infrastructure", "Lms.Infrastructure\Lms.Infrastructure.csproj", "{1BEE69A0-63EC-4650-9C97-8A0D1CC01C65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.LmsApi.Tests", "Lms.LmsApi.Tests\Lms.LmsApi.Tests.csproj", "{681481C3-DA6B-4900-864F-2227E463D783}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.LmsApi", "Lms.LmsApi\Lms.LmsApi.csproj", "{FCD5887D-F303-4AF1-B666-C8D972F30EE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.LmsWeb", "Lms.LmsWeb\Lms.LmsWeb.csproj", "{F6F71043-3411-4EF5-9F04-5523917EE4E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lms.LmsWeb.Tests", "Lms.LmsWeb.Tests\Lms.LmsWeb.Tests.csproj", "{A45F12DF-5231-45E0-B70B-67AC13DE618A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{999402B3-E6FB-404B-AAD7-731693DEA107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{999402B3-E6FB-404B-AAD7-731693DEA107}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{999402B3-E6FB-404B-AAD7-731693DEA107}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{999402B3-E6FB-404B-AAD7-731693DEA107}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BEE69A0-63EC-4650-9C97-8A0D1CC01C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BEE69A0-63EC-4650-9C97-8A0D1CC01C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BEE69A0-63EC-4650-9C97-8A0D1CC01C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BEE69A0-63EC-4650-9C97-8A0D1CC01C65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{681481C3-DA6B-4900-864F-2227E463D783}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{681481C3-DA6B-4900-864F-2227E463D783}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{681481C3-DA6B-4900-864F-2227E463D783}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{681481C3-DA6B-4900-864F-2227E463D783}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCD5887D-F303-4AF1-B666-C8D972F30EE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD5887D-F303-4AF1-B666-C8D972F30EE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD5887D-F303-4AF1-B666-C8D972F30EE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD5887D-F303-4AF1-B666-C8D972F30EE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F71043-3411-4EF5-9F04-5523917EE4E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F71043-3411-4EF5-9F04-5523917EE4E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F71043-3411-4EF5-9F04-5523917EE4E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F71043-3411-4EF5-9F04-5523917EE4E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A45F12DF-5231-45E0-B70B-67AC13DE618A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A45F12DF-5231-45E0-B70B-67AC13DE618A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A45F12DF-5231-45E0-B70B-67AC13DE618A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A45F12DF-5231-45E0-B70B-67AC13DE618A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

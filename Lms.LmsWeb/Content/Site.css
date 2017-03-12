@@ -1,0 +1,26 @@
+﻿.no-margin-top {
+    margin-top: 0 !important;
+}
+
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
+    margin: 5px 0 0 0;
+}
+
+.validation-summary {
+    padding: 10px 0 20px;
+    display: inline-block;
+}
+
+.course-title a {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.course-desc {
+    margin-top: 8px;
+    font-size: 0.9em;
+}
+
+.course-wrapper {
+    height: auto !important;
+}

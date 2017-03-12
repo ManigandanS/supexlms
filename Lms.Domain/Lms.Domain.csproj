@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFE05D27-499E-405B-9F0E-B02C9EA75CC7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Lms.Domain</RootNamespace>
+    <AssemblyName>Lms.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DigitalOfficePro.Html5PointSdk, Version=1.4.1.6, Culture=neutral, PublicKeyToken=5e90c5baa3624fc1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\DigitalOfficePro.Html5PointSdk.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetZip, Version=1.10.1.0, Culture=neutral, PublicKeyToken=6583c7c814667745, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetZip.1.10.1\lib\net20\DotNetZip.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus, Version=4.1.0.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\EPPlus.4.1.0\lib\net40\EPPlus.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.9.9\lib\net45\MySql.Data.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.9\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.3.11\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gateways\Payments\IPaymentService.cs" />
+    <Compile Include="Migrations\201701100351251_mig.cs" />
+    <Compile Include="Migrations\201701100351251_mig.Designer.cs">
+      <DependentUpon>201701100351251_mig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201701110436309_mig1.cs" />
+    <Compile Include="Migrations\201701110436309_mig1.Designer.cs">
+      <DependentUpon>201701110436309_mig1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702040612035_mig2.cs" />
+    <Compile Include="Migrations\201702040612035_mig2.Designer.cs">
+      <DependentUpon>201702040612035_mig2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702040652199_mig3.cs" />
+    <Compile Include="Migrations\201702040652199_mig3.Designer.cs">
+      <DependentUpon>201702040652199_mig3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702040657494_mig4.cs" />
+    <Compile Include="Migrations\201702040657494_mig4.Designer.cs">
+      <DependentUpon>201702040657494_mig4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702050142577_mig5.cs" />
+    <Compile Include="Migrations\201702050142577_mig5.Designer.cs">
+      <DependentUpon>201702050142577_mig5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Certificates\Certificate.cs" />
+    <Compile Include="Models\Commons\Configuration.cs" />
+    <Compile Include="Models\Commons\Currency.cs" />
+    <Compile Include="Models\Commons\TimeZone.cs" />
+    <Compile Include="Models\Companies\Company.cs" />
+    <Compile Include="Models\Companies\CompanyConfiguration.cs" />
+    <Compile Include="Models\Companies\Notification.cs" />
+    <Compile Include="Models\Companies\Organization.cs" />
+    <Compile Include="Models\Contents\Content.cs" />
+    <Compile Include="Models\Contents\Video.cs" />
+    <Compile Include="Models\Courses\Course.cs" />
+    <Compile Include="Models\Courses\Lesson.cs" />
+    <Compile Include="Models\Courses\Session.cs" />
+    <Compile Include="Models\Emails\EmailQueue.cs" />
+    <Compile Include="Models\Emails\EmailQueueFactory.cs" />
+    <Compile Include="Models\Emails\EnrollmentEmailQueueFactory.cs" />
+    <Compile Include="Models\Emails\WelcomeEmailQueueFactory.cs" />
+    <Compile Include="Models\Emails\WithdrawlEmailQueueFactory.cs" />
+    <Compile Include="Models\Exceptions\PaymentException.cs" />
+    <Compile Include="Models\Quizzes\Quiz.cs" />
+    <Compile Include="Models\Quizzes\QuizAnswer.cs" />
+    <Compile Include="Models\Quizzes\QuizQuestion.cs" />
+    <Compile Include="Models\Quizzes\UserAnswer.cs" />
+    <Compile Include="Models\SSO\AuthnRequest.cs" />
+    <Compile Include="Models\SSO\LogoutRequest.cs" />
+    <Compile Include="Models\SSO\Response.cs" />
+    <Compile Include="Models\Users\Enrollment.cs" />
+    <Compile Include="Models\Exceptions\CourseException.cs" />
+    <Compile Include="Models\Exceptions\CompanyException.cs" />
+    <Compile Include="Models\Exceptions\UserException.cs" />
+    <Compile Include="Models\Exceptions\ScormException.cs" />
+    <Compile Include="Models\Plans\Plan.cs" />
+    <Compile Include="Models\Contents\Scorm.cs" />
+    <Compile Include="Models\Users\CompanyAccess.cs" />
+    <Compile Include="Models\Companies\Group.cs" />
+    <Compile Include="Models\Users\LessonData.cs" />
+    <Compile Include="Models\Users\Role.cs" />
+    <Compile Include="Models\Users\User.cs" />
+    <Compile Include="Models\Users\UserCertificate.cs" />
+    <Compile Include="Models\Users\UserRole.cs" />
+    <Compile Include="Models\Users\UserGroup.cs" />
+    <Compile Include="Models\Utils\CryptoUtil.cs" />
+    <Compile Include="Models\Utils\SamlUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ApplicationDbContext.cs" />
+    <Compile Include="Repositories\IDbRepository.cs" />
+    <Compile Include="Repositories\IFileRepository.cs" />
+    <Compile Include="Repositories\IUnitOfWork.cs" />
+    <Compile Include="Services\Certificates\CertificateServiceImpl.cs" />
+    <Compile Include="Services\Certificates\ICertificateService.cs" />
+    <Compile Include="Services\Companies\CompanyServiceImpl.cs" />
+    <Compile Include="Services\Companies\GroupServiceImpl.cs" />
+    <Compile Include="Services\Companies\ICompanyService.cs" />
+    <Compile Include="Services\Companies\IGroupService.cs" />
+    <Compile Include="Services\Companies\INotificationService.cs" />
+    <Compile Include="Services\Companies\NotificationServiceImpl.cs" />
+    <Compile Include="Services\Configs\ConfigServiceImpl.cs" />
+    <Compile Include="Services\Configs\IConfigService.cs" />
+    <Compile Include="Services\Courses\CourseServiceImpl.cs" />
+    <Compile Include="Services\Courses\ICourseService.cs" />
+    <Compile Include="Services\Courses\ILessonService.cs" />
+    <Compile Include="Services\Courses\ISessionService.cs" />
+    <Compile Include="Services\Courses\LessonServiceImpl.cs" />
+    <Compile Include="Services\Courses\SessionServiceImpl.cs" />
+    <Compile Include="Services\Plans\IPlanService.cs" />
+    <Compile Include="Services\Plans\PlanServiceImpl.cs" />
+    <Compile Include="Services\Quizzes\IQuestionService.cs" />
+    <Compile Include="Services\Quizzes\IQuizService.cs" />
+    <Compile Include="Services\Quizzes\QuestionServiceImpl.cs" />
+    <Compile Include="Services\Quizzes\QuizServiceImpl.cs" />
+    <Compile Include="Services\Scorms\IScormService.cs" />
+    <Compile Include="Services\Scorms\ScormServiceImpl.cs" />
+    <Compile Include="Services\Auths\AuthServiceImpl.cs" />
+    <Compile Include="Services\Auths\AzureAuthenticate.cs" />
+    <Compile Include="Services\Auths\DbAuthenticate.cs" />
+    <Compile Include="Services\Auths\IAuthenticate.cs" />
+    <Compile Include="Services\Auths\IAuthService.cs" />
+    <Compile Include="Services\Users\IUserService.cs" />
+    <Compile Include="Services\Users\UserServiceImpl.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701100351251_mig.resx">
+      <DependentUpon>201701100351251_mig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201701110436309_mig1.resx">
+      <DependentUpon>201701110436309_mig1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702040612035_mig2.resx">
+      <DependentUpon>201702040612035_mig2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702040652199_mig3.resx">
+      <DependentUpon>201702040652199_mig3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702040657494_mig4.resx">
+      <DependentUpon>201702040657494_mig4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702050142577_mig5.resx">
+      <DependentUpon>201702050142577_mig5.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
