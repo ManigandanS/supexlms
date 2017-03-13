@@ -64,7 +64,7 @@ namespace Lms.LmsWeb.Models
             logger.Trace(Request.IsAuthenticated + " --- " + User.Identity.IsAuthenticated);
 
             if (!User.Identity.IsAuthenticated)               
-                Response.Redirect("~/Account/Login");
+                Response.Redirect("~/Pages/Account/Login");
             
                 
 
@@ -81,7 +81,7 @@ namespace Lms.LmsWeb.Models
             catch (Exception ex)
             {
                 logger.Info(ex.ToString());
-                Response.Redirect("~/Account/Login");
+                Response.Redirect("~/Pages/Account/Login");
             }
 
 
@@ -89,7 +89,7 @@ namespace Lms.LmsWeb.Models
 
 
             if (uri != Request.Url.Host)
-                Response.Redirect("~/Account/Login");
+                Response.Redirect("~/Pages/Account/Login");
 
 
             if (SessionVariable.Current.User == null || SessionVariable.Current.Company == null)

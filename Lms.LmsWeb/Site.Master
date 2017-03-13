@@ -90,8 +90,8 @@
                             <div class="menu_section">                                
                                 <ul class="nav side-menu">
                                     <li><a runat="server" href="~/Default"><i class="fa fa-tachometer"></i>&nbsp;Dashboard</a></li>
-                                    <li><a runat="server" href="~/Course/Catalogue"><i class="fa fa-search"></i>&nbsp;Catalogue</a></li>
-                                    <li><a runat="server" href="~/Account/Transcript"><i class="fa fa-graduation-cap"></i>&nbsp;Transcript</a></li>
+                                    <li><a runat="server" href="~/Pages/Course/Catalogue"><i class="fa fa-search"></i>&nbsp;Catalogue</a></li>
+                                    <li><a runat="server" href="~/Pages/Account/Transcript"><i class="fa fa-graduation-cap"></i>&nbsp;Transcript</a></li>
 
                                     <% if (IsCompanyAdmin)
                                        { %>
@@ -137,7 +137,7 @@
                                         <span class=" fa fa-angle-down"></span>
                                     </a>
                                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                        <li><a href="/Account/Manage">Profile</a></li>
+                                        <li><a href="~/Pages/Account/Manage" runat="server">Profile</a></li>
 
                                         <asp:LoginView runat="server" ViewStateMode="Disabled">
                                             <LoggedInTemplate>

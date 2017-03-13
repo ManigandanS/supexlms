@@ -140,7 +140,9 @@
     <Compile Include="Models\Users\CompanyAccess.cs" />
     <Compile Include="Models\Companies\Group.cs" />
     <Compile Include="Models\Users\LessonData.cs" />
+    <Compile Include="Models\Quizzes\QuizData.cs" />
     <Compile Include="Models\Users\Role.cs" />
+    <Compile Include="Models\Contents\ScormData.cs" />
     <Compile Include="Models\Users\User.cs" />
     <Compile Include="Models\Users\UserCertificate.cs" />
     <Compile Include="Models\Users\UserRole.cs" />
