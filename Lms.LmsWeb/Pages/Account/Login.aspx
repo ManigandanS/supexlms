@@ -59,6 +59,9 @@
                             <asp:Button ID="LoginBtn" runat="server" Text="Sign In" OnClick="LoginBtn_Click" CssClass="btn btn-primary btn-block btn-lg" style="margin-left: 0;" />                            
                         </div>
                         <div>
+                            <asp:Literal ID="ErrorMsg" runat="server"></asp:Literal>
+                        </div>
+                        <div>
                             <a class="reset_pass" href="#">Lost your password?</a>
                         </div>
 
@@ -77,7 +80,7 @@
                         <div class="separator">
                             <p class="change_link">
                                 New to site?
-                  <a href="#signup" class="to_register">Create Account </a>
+                                <a href="#signup" class="to_register">Create Account </a>
                             </p>
 
                             <div class="clearfix"></div>

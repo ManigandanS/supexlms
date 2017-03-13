@@ -1,4 +1,5 @@
 ﻿using Lms.Domain.Models.Commons;
+using Lms.Domain.Models.Exceptions;
 using Lms.Domain.Models.Users;
 using Lms.Domain.Models.Utils;
 using Lms.Domain.Repositories;
@@ -69,6 +70,11 @@ namespace Lms.LmsWeb.Account
                         else
                             Request.GetOwinContext().Response.Redirect("/Default");
                     }
+                }
+                catch (UserException uex)
+                {
+                    ErrorMsg.Text = uex.Message;
+                    return;
                 }
                 catch (Exception ex)
                 {
