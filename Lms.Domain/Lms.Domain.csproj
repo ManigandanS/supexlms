@@ -103,6 +103,14 @@
     <Compile Include="Migrations\201702050142577_mig5.Designer.cs">
       <DependentUpon>201702050142577_mig5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703180130203_mig6.cs" />
+    <Compile Include="Migrations\201703180130203_mig6.Designer.cs">
+      <DependentUpon>201703180130203_mig6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703180229185_mig7.cs" />
+    <Compile Include="Migrations\201703180229185_mig7.Designer.cs">
+      <DependentUpon>201703180229185_mig7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Certificates\Certificate.cs" />
     <Compile Include="Models\Commons\Configuration.cs" />
@@ -139,10 +147,9 @@
     <Compile Include="Models\Contents\Scorm.cs" />
     <Compile Include="Models\Users\CompanyAccess.cs" />
     <Compile Include="Models\Companies\Group.cs" />
-    <Compile Include="Models\Users\LessonData.cs" />
-    <Compile Include="Models\Quizzes\QuizData.cs" />
+    <Compile Include="Models\Users\QuizData.cs" />
     <Compile Include="Models\Users\Role.cs" />
-    <Compile Include="Models\Contents\ScormData.cs" />
+    <Compile Include="Models\Users\ScormData.cs" />
     <Compile Include="Models\Users\User.cs" />
     <Compile Include="Models\Users\UserCertificate.cs" />
     <Compile Include="Models\Users\UserRole.cs" />
@@ -208,6 +215,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702050142577_mig5.resx">
       <DependentUpon>201702050142577_mig5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703180130203_mig6.resx">
+      <DependentUpon>201703180130203_mig6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703180229185_mig7.resx">
+      <DependentUpon>201703180229185_mig7.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

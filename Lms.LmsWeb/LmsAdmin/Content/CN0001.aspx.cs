@@ -23,17 +23,6 @@ namespace Lms.LmsWeb.LmsAdmin.Content
         }
 
 
-        protected void PublishBtn_Command(object sender, CommandEventArgs e)
-        {
-            string scormId = e.CommandArgument as string;
-            ScormService.PublishScorm(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, scormId);
-
-            Response.Redirect(Request.RawUrl);
-        }
-
-        
-        
-
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
 

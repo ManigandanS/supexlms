@@ -25,7 +25,7 @@ namespace Lms.LmsWeb.LmsAdmin.Account
 
                 if (enrollment != null)
                 {
-                    LessonRepeater.DataSource = enrollment.LessonData.OrderBy(x => x.Lesson.Order);
+                    LessonRepeater.DataSource = enrollment.ScormData.OrderBy(x => x.Lesson.Order);
                     LessonRepeater.DataBind();
                 }
             }

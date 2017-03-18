@@ -18,22 +18,22 @@ namespace Lms.LmsWeb
                     .OrderByDescending(x => x.StartDate).ToList();
                 ActiveNotifications.DataBind();
 
-                var activeCourses = UserService.LoadActiveEnrollments(SessionVariable.Current.User.Id).OrderBy(x => x.Session.Course.Name).ToList();
+                var activeCourses = UserService.LoadActiveEnrollments(SessionVariable.Current.User.Id).OrderBy(x => x.Session.Course.Name);
                 ActiveCourses.DataSource = activeCourses;
                 ActiveCourses.DataBind();
 
-                if (activeCourses.Count == 0)
+                if (activeCourses.Count() == 0)
                     Panel1.Visible = false;
 
 
                 Panel2.Visible = false;
 
 
-                var newCourses = SessionService.LoadNewSessions(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id).OrderBy(x => x.Course.Name).ToList();
+                var newCourses = SessionService.LoadNewSessions(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id).OrderBy(x => x.Course.Name);
                 NewCourses.DataSource = newCourses;
                 NewCourses.DataBind();
 
-                if (newCourses.Count == 0)
+                if (newCourses.Count() == 0)
                     Panel3.Visible = false;
             }
         }

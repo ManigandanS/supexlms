@@ -28,7 +28,12 @@ namespace Lms.LmsWeb.LmsAdmin.Certificate
 
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
-            //Response.Write(SearchControl1.Keyword);
+            Func<Lms.Domain.Models.Certificates.Certificate, bool> nameFilter = x => x.Name.Contains(SearchControl1.Keyword);
+            Func<Lms.Domain.Models.Certificates.Certificate, bool> descFilter = x => x.Description.Contains(SearchControl1.Keyword);
+            Func<Lms.Domain.Models.Certificates.Certificate, bool> predicate = x => nameFilter(x) || descFilter(x);
+
+            Repeater1.DataSource = CertificateService.FindCertificates(SessionVariable.Current.Company.Id, predicate);
+            Repeater1.DataBind();
         }
     }
 }

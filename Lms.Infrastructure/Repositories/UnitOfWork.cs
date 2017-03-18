@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lms.Domain.Models.Certificates;
 
 namespace Lms.Infrastructure.Repositories
 {
@@ -29,6 +30,11 @@ namespace Lms.Infrastructure.Repositories
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IDbRepository<Certificate> CertificateRepository
+        {
+            get { return Repository<Certificate>(); }
         }
 
         public IDbRepository<Configuration> ConfigurationRepository

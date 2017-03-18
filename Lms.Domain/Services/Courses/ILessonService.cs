@@ -28,11 +28,11 @@ namespace Lms.Domain.Services.Courses
 
         Lesson GetLessonById(string companyId, string courseId, string lessonId);
 
-        void SetScormLessonData(string userId, string lessonId, string enrollmentId, string param, string value);
+        void SetScormData(string userId, string lessonId, string enrollmentId, string param, string value);
 
-        string GetScormLessonData(string userId, string lessonId, string enrollmentId, string param);
+        string GetScormData(string userId, string lessonId, string enrollmentId, string param);
 
-        void CommitScormLesson(string userId, string lessonId, string enrollmentId);
+        void CommitScormData(string userId, string lessonId, string enrollmentId);
 
         void Grade(string userId, string quizId, string lessonId, string enrollmentId, List<UserAnswer> userAnswers);
     }

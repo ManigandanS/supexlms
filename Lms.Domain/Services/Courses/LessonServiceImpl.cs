@@ -24,36 +24,48 @@ namespace Lms.Domain.Services.Courses
         }
 
 
-        public void SetScormLessonData(string userId, string lessonId, string enrollmentId, string param, string value)
+        public void SetScormData(string userId, string lessonId, string enrollmentId, string param, string value)
         {
             var enrollment = unitOfWork.EnrollmentRepository.GetById(enrollmentId);
 
             if (enrollment.UserId == userId)
             {
-                var lessonData = enrollment.LessonData.SingleOrDefault(x => x.LessonId == lessonId);
-                if (lessonData != null)
+                var scormData = enrollment.ScormData.SingleOrDefault(x => x.LessonId == lessonId);
+                if (scormData != null)
                 {
                     JObject jsonData = null;
 
-                    if (lessonData.DataResult == LessonDataResultEnum.NotStarted)
-                        lessonData.DataResult = LessonDataResultEnum.Started;
+                    if (scormData.DataResult == ScormDataResultEnum.NotStarted)
+                        scormData.DataResult = ScormDataResultEnum.Started;
 
-                    if (lessonData.TemporaryData != null)
+                    if (scormData.TemporaryData != null)
                     {
-                        jsonData = JObject.Parse(lessonData.TemporaryData);
+                        jsonData = JObject.Parse(scormData.TemporaryData);
 
                         if (jsonData[param] == null)
                             jsonData.Add(new JProperty(param, value));
                         else
                             jsonData[param] = value;
 
-                        lessonData.TemporaryData = jsonData.ToString();
+                        scormData.TemporaryData = jsonData.ToString();
                     }
                     else
                     {
                         jsonData = new JObject(new JProperty(param, value));
-                        lessonData.TemporaryData = jsonData.ToString();
+                        scormData.TemporaryData = jsonData.ToString();
                     }
+
+                    unitOfWork.EnrollmentRepository.Update(enrollment);
+                    unitOfWork.SaveChanges();
+                }
+                else
+                {
+                    scormData = new ScormData();
+                    JObject jsonData = new JObject();
+                    scormData.DataResult = ScormDataResultEnum.Started;
+                    jsonData.Add(new JProperty(param, value));
+                    scormData.TemporaryData = jsonData.ToString();
+                    enrollment.ScormData.Add(scormData);
 
                     unitOfWork.EnrollmentRepository.Update(enrollment);
                     unitOfWork.SaveChanges();
@@ -61,17 +73,17 @@ namespace Lms.Domain.Services.Courses
             }
         }
 
-        public string GetScormLessonData(string userId, string lessonId, string enrollmentId, string param)
+        public string GetScormData(string userId, string lessonId, string enrollmentId, string param)
         {
             var enrollment = unitOfWork.EnrollmentRepository.GetById(enrollmentId);
 
             if (enrollment.UserId == userId)
             {
-                var lessonData = enrollment.LessonData.SingleOrDefault(x => x.LessonId == lessonId);
+                var scormData = enrollment.ScormData.SingleOrDefault(x => x.LessonId == lessonId);
 
-                if (lessonData != null)
+                if (scormData != null)
                 {
-                    JObject jsonData = JObject.Parse(lessonData.TemporaryData);
+                    JObject jsonData = JObject.Parse(scormData.TemporaryData);
                     var result = jsonData[param];
                     if (result != null)
                         return result.ToString();
@@ -82,24 +94,24 @@ namespace Lms.Domain.Services.Courses
             return null;
         }
 
-        public void CommitScormLesson(string userId, string lessonId, string enrollmentId)
+        public void CommitScormData(string userId, string lessonId, string enrollmentId)
         {
             var enrollment = unitOfWork.EnrollmentRepository.GetById(enrollmentId);
 
             if (enrollment.UserId == userId)
             {
-                var lessonData = enrollment.LessonData.SingleOrDefault(x => x.LessonId == lessonId);
+                var scormData = enrollment.ScormData.SingleOrDefault(x => x.LessonId == lessonId);
 
-                if (lessonData != null && !lessonData.IsCompleted)
+                if (scormData != null && !scormData.IsCompleted)
                 {
-                    if (lessonData.PersistentData == null)
+                    if (scormData.PersistentData == null)
                     {
-                        lessonData.PersistentData = lessonData.TemporaryData;
+                        scormData.PersistentData = scormData.TemporaryData;
                     }
                     else
                     {
-                        var tempData = JObject.Parse(lessonData.TemporaryData);
-                        var persistData = JObject.Parse(lessonData.PersistentData);
+                        var tempData = JObject.Parse(scormData.TemporaryData);
+                        var persistData = JObject.Parse(scormData.PersistentData);
 
                         foreach (var x in tempData)
                         { // if 'obj' is a JObject
@@ -118,12 +130,12 @@ namespace Lms.Domain.Services.Courses
                             }
                         }
 
-                        lessonData.PersistentData = persistData.ToString();
+                        scormData.PersistentData = persistData.ToString();
                     }
 
                     logger.Trace("CheckLessonCompletion calling...");
-                    CheckLessonCompletion(lessonData);
-                    CheckCourseCompletion(lessonData);
+                    CheckScormCompletion(scormData);
+                    CheckCourseCompletion(enrollment, scormData.Lesson);
 
                     unitOfWork.EnrollmentRepository.Update(enrollment);
                     unitOfWork.SaveChanges();
@@ -136,57 +148,46 @@ namespace Lms.Domain.Services.Courses
 
 
 
-        private void CheckCourseCompletion(LessonData lessonData)
+        private void CheckCourseCompletion(Enrollment enrollment, Lesson lesson)
         {
-            int lessonNum = lessonData.Enrollment.LessonData.Count();
-            int passNum = lessonData.Enrollment.LessonData.Count(x => x.DataResult == LessonDataResultEnum.Passed);
-            int failNum = lessonData.Enrollment.LessonData.Count(x => x.DataResult == LessonDataResultEnum.Faild);
+            
+            int lessonNum = enrollment.ScormData.Count() + enrollment.QuizData.Count();
+            int completedNum = enrollment.ScormData.Count(x => x.IsCompleted) + enrollment.QuizData.Count(x => x.IsCompleted);
 
-            var user = lessonData.Enrollment.User;
-
-            logger.Info("userId: {0}, lessonNum: {1}, passNum: {2}, failNum: {3}",
-                lessonData.Enrollment.UserId, lessonNum, passNum, failNum);
+            logger.Info("userId: {0}, lessonNum: {1}, completedNum: {2}, incompletedNum: {3}",
+                enrollment.UserId, lessonNum, completedNum, (lessonNum - completedNum));
 
 
-            if (lessonNum == (passNum + failNum))
+            if (lessonNum == completedNum)
             {
-                if (passNum == lessonNum)
-                {
-                    lessonData.Enrollment.SetEnrollmentResult(EnrollResultEnum.Passed);
-                    if (lessonData.Lesson.Course.CertificateId != null)
-                        user.AssignCertificate(lessonData.Lesson.Course.Certificate);
-                }
-                else
-                {
-                    lessonData.Enrollment.SetEnrollmentResult(EnrollResultEnum.Failed);
-                }
-
+                enrollment.SetEnrollmentResult(EnrollResultEnum.Passed);
+                enrollment.User.AssignCertificate(lesson.Course.Certificate);                
             }
         }
 
 
-        private void CheckLessonCompletion(LessonData lessonData)
+        private void CheckScormCompletion(ScormData scormData)
         {
             logger.Trace("Inside CheckLessonCompletion");
 
-            var jsonData = JObject.Parse(lessonData.PersistentData);
+            var jsonData = JObject.Parse(scormData.PersistentData);
             var lessonStatus = jsonData["cmi.core.lesson_status"];
             var successStatus = jsonData["cmi.success_status"];
 
-            logger.Info("id: {0}, lessonStatus: {1}, successStatus: {2}", lessonData.Id, lessonStatus, successStatus);
+            logger.Info("id: {0}, lessonStatus: {1}, successStatus: {2}", scormData.Id, lessonStatus, successStatus);
 
             if ((lessonStatus != null && lessonStatus.ToString() == "passed") || (successStatus != null && successStatus.ToString() == "passed"))
             {
-                lessonData.IsCompleted = true;
-                lessonData.DataResult = LessonDataResultEnum.Passed;
+                scormData.IsCompleted = true;
+                scormData.DataResult = ScormDataResultEnum.Passed;
 
-                logger.Debug("Passed... lessonData.DataResult: " + lessonData.DataResult);
+                logger.Debug("Passed... lessonData.DataResult: " + scormData.DataResult);
             }
 
             if ((lessonStatus != null && lessonStatus.ToString() == "failed") || (successStatus != null && successStatus.ToString() == "failed"))
             {
-                lessonData.IsCompleted = true;
-                lessonData.DataResult = LessonDataResultEnum.Faild;
+                scormData.IsCompleted = true;
+                scormData.DataResult = ScormDataResultEnum.Faild;
             }
         }
 
@@ -194,7 +195,7 @@ namespace Lms.Domain.Services.Courses
         {
             var quiz = unitOfWork.QuizRepository.GetById(quizId);
             var enrollment = unitOfWork.EnrollmentRepository.GetById(enrollmentId);
-            var lessonData = enrollment.LessonData.SingleOrDefault(x => x.LessonId == lessonId);
+            
 
             float passPercent = quiz.PassPercent;
             int totalQuizNum = quiz.LoadActiveQuizQuestions().Count();
@@ -236,13 +237,16 @@ namespace Lms.Domain.Services.Courses
             logger.Info("totalQuizNum: {0}, rightAnswer: {1}, wrongAnswer: {2}", totalQuizNum, rightAnswerNum, wrongAnswerNum);
             logger.Info("userId: {0}, quizId: {1}, score: {2}", enrollment.UserId, quizId, score);
 
-            lessonData.IsCompleted = true;
-            lessonData.DataResult = score >= passPercent ? LessonDataResultEnum.Passed : LessonDataResultEnum.Faild;
-            lessonData.TemporaryData = JsonConvert.SerializeObject(userAnswers);
-            lessonData.PersistentData = JsonConvert.SerializeObject(userAnswers);
-            lessonData.Score = score;
+            var quizData = new QuizData();
+            quizData.LessonId = lessonId;
+            quizData.IsCompleted = true;
+            quizData.DataResult = score >= passPercent ? QuizDataResultEnum.Passed : QuizDataResultEnum.Faild;
+            quizData.TemporaryData = JsonConvert.SerializeObject(userAnswers);
+            quizData.PersistentData = JsonConvert.SerializeObject(userAnswers);
+            quizData.Score = score;
+            enrollment.QuizData.Add(quizData);
 
-            CheckCourseCompletion(lessonData);
+            CheckCourseCompletion(enrollment, quizData.Lesson);
 
             unitOfWork.EnrollmentRepository.Update(enrollment);
             unitOfWork.SaveChanges();

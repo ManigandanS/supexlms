@@ -7,27 +7,36 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lms.LmsWeb.Account {
+namespace Lms.LmsWeb.Catalogue {
     
     
-    public partial class Transcript {
+    public partial class Index {
         
         /// <summary>
-        /// GradeRepeater control.
+        /// SearchText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater GradeRepeater;
+        protected global::System.Web.UI.WebControls.TextBox SearchText;
         
         /// <summary>
-        /// CertificateRepeater control.
+        /// SearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CertificateRepeater;
+        protected global::System.Web.UI.WebControls.Button SearchBtn;
+        
+        /// <summary>
+        /// CourseRepeater control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater CourseRepeater;
     }
 }

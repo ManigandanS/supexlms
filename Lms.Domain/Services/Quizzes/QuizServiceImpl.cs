@@ -33,10 +33,6 @@ namespace Lms.Domain.Services.Quizzes
             return unitOfWork.QuizRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted);
         }
 
-        public IEnumerable<Quiz> LoadPublishedQuizzes(string companyId)
-        {
-            return unitOfWork.QuizRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted && x.IsPublished);
-        }
 
         public Quiz GetQuizById(string companyId, string quizId)
         {
@@ -58,17 +54,7 @@ namespace Lms.Domain.Services.Quizzes
             }
         }
 
-        public void PublishQuiz(string companyId, string userId, string quizId)
-        {
-            var quiz = unitOfWork.QuizRepository.GetById(quizId);
-            if (quiz.CompanyId == companyId)
-            {
-                quiz.Publish();
-                unitOfWork.QuizRepository.Update(quiz);
-                unitOfWork.SaveChanges();
-            }
-        }
-
+        
         public Quiz CreateQuiz(string companyId, string userId, string name, string description, float passPercent)
         {
             var company = unitOfWork.CompanyRepository.GetById(companyId);

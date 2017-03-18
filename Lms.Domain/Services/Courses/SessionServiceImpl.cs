@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Lms.Domain.Services.Courses
 {
@@ -47,8 +48,8 @@ namespace Lms.Domain.Services.Courses
 
         public void EnrollUser(string userId, string sessionId)
         {
-            var lessons = unitOfWork.SessionRepository.GetById(sessionId).Course.Lessons.Where(x => !x.IsDeleted).ToList();
-            var enrollment = new Enrollment(userId, sessionId, lessons);
+            //var lessons = unitOfWork.SessionRepository.GetById(sessionId).Course.Lessons.Where(x => !x.IsDeleted).ToList();
+            var enrollment = new Enrollment(userId, sessionId);
             unitOfWork.EnrollmentRepository.Insert(enrollment);
             unitOfWork.SaveChanges();
         }
@@ -68,9 +69,10 @@ namespace Lms.Domain.Services.Courses
 
         public IEnumerable<Session> LoadNewSessions(string companyId, string userId)
         {
-            var courses = unitOfWork.CourseRepository.FindAsNoTracking(x => x.CompanyId == companyId && !x.IsDeleted && x.IsPublished);
             var user = unitOfWork.UserRepository.GetById(userId);
-
+            var courses = unitOfWork.CourseRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted)
+                .Include(x => x.Sessions);
+            
             if (user.UserType == Models.Users.UserTypeEnum.External)
             {
                 courses = courses.Where(x => x.CourseAccess == CourseAccessEnum.ExtenralUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
@@ -81,7 +83,7 @@ namespace Lms.Domain.Services.Courses
             }
 
             var utcNow = DateTime.UtcNow;
-            return courses.SelectMany(x => x.Sessions).Where(x => !x.IsDeleted && x.EnrollEnd >= utcNow).OrderByDescending(x => x.SessionStart).Take(6);
+            return courses.SelectMany(x => x.Sessions).Where(x => !x.IsDeleted && x.EnrollEnd >= utcNow).OrderByDescending(x => x.SessionStart).Take(6).ToList();
         }
 
 

@@ -13,22 +13,13 @@ namespace Lms.LmsWeb.LmsAdmin.Quiz {
     public partial class QZ0001 {
         
         /// <summary>
-        /// QuizNameText control.
+        /// SearchControl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox QuizNameText;
-        
-        /// <summary>
-        /// SearchBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchBtn;
+        protected global::Lms.LmsWeb.UserControls.CommonSearch SearchControl1;
         
         /// <summary>
         /// QuizRepeater control.

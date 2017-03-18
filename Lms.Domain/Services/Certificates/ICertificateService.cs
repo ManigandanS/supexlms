@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,8 @@ namespace Lms.Domain.Services.Certificates
     public interface ICertificateService
     {
         IEnumerable<Certificate> LoadAllCertificates(string companyId);
+
+        IEnumerable<Certificate> FindCertificates(string companyId, Func<Certificate, bool> predicate);
 
         Certificate CreateCertificate(string companyId, string userId, string name, string description, CertificateExpiryType expiryType, int? month);
 

@@ -36,11 +36,7 @@ namespace Lms.Domain.Models.Quizzes
             this.UpdatedTs = DateTime.UtcNow;
         }
 
-        public void Publish()
-        {
-            this.IsPublished = true;
-            this.UpdatedTs = DateTime.UtcNow;
-        }
+        
 
         public void AddQuestion(QuizQuestion quizQuestion)
         {
@@ -74,8 +70,6 @@ namespace Lms.Domain.Models.Quizzes
         public string CompanyId { get; set; }
 
         public string Description { get; set; }
-
-        public bool IsPublished { get; set; }
 
         public bool IsDeleted { get; set; }
 

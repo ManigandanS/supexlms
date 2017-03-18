@@ -13,22 +13,13 @@ namespace Lms.LmsWeb.LmsAdmin.Content {
     public partial class CN0001 {
         
         /// <summary>
-        /// ScormNameText control.
+        /// SearchControl1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ScormNameText;
-        
-        /// <summary>
-        /// SearchBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button SearchBtn;
+        protected global::Lms.LmsWeb.UserControls.CommonSearch SearchControl1;
         
         /// <summary>
         /// ScormRepeater control.

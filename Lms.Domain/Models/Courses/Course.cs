@@ -88,16 +88,8 @@ namespace Lms.Domain.Models.Courses
             this.CertificateId = certificateId;
         }
 
-        public void Unpublish()
-        {
-            this.IsPublished = false;
-        }
+       
 
-        public void Publish()
-        {
-            this.IsPublished = true;
-            this.PublishedTs = DateTime.UtcNow;
-        }
 
         public List<Lesson> LoadActiveLessons()
         {
@@ -168,10 +160,6 @@ namespace Lms.Domain.Models.Courses
         public string CompanyId { get; set; }
 
         public bool IsDeleted { get; set; }
-
-        public bool IsPublished { get; set; }
-
-        public DateTime? PublishedTs { get; set; }
 
         public string CertificateId { get; set; }
 

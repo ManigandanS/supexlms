@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lms.Domain.Models.Certificates;
 
 namespace Lms.Domain.Repositories
 {
@@ -27,6 +28,7 @@ namespace Lms.Domain.Repositories
         IDbRepository<Quiz> QuizRepository { get; }
         IDbRepository<Enrollment> EnrollmentRepository { get; }
         IDbRepository<Session> SessionRepository { get; }
+        IDbRepository<Certificate> CertificateRepository { get; }
 
         int SqlCommand(string sql, params object[] parameters);
         void SaveChanges();

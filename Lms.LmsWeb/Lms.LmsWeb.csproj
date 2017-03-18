@@ -180,7 +180,7 @@
     <Content Include="Content\custom.css" />
     <Content Include="Pages\Course\CourseApi.svc" />
     <Content Include="Pages\Course\QuizLesson.aspx" />
-    <Content Include="Pages\Account\Transcript.aspx" />
+    <Content Include="Pages\Transcript\Index.aspx" />
     <Content Include="Pages\Account\Manage.aspx" />
     <Content Include="Pages\Account\ResetPassword.aspx" />
     <Content Include="Pages\Account\Register.aspx" />
@@ -191,9 +191,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
-    <Content Include="Pages\Course\Payment.aspx" />
-    <Content Include="Pages\Course\Catalogue.aspx" />
-    <Content Include="Pages\Course\Details.aspx" />
+    <Content Include="Pages\Catalogue\Payment.aspx" />
+    <Content Include="Pages\Catalogue\Index.aspx" />
+    <Content Include="Pages\Catalogue\Details.aspx" />
     <Content Include="Pages\Course\Curriculum.aspx" />
     <Content Include="Pages\Course\ScormApi.svc" />
     <Content Include="Pages\Course\ScormLesson.aspx" />
@@ -4611,12 +4611,12 @@
     <Compile Include="Pages\Course\QuizLesson.aspx.designer.cs">
       <DependentUpon>QuizLesson.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Account\Transcript.aspx.cs">
-      <DependentUpon>Transcript.aspx</DependentUpon>
+    <Compile Include="Pages\Transcript\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Account\Transcript.aspx.designer.cs">
-      <DependentUpon>Transcript.aspx</DependentUpon>
+    <Compile Include="Pages\Transcript\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Account\Manage.aspx.cs">
       <DependentUpon>Manage.aspx</DependentUpon>
@@ -4646,25 +4646,25 @@
     <Compile Include="Pages\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Course\Payment.aspx.cs">
+    <Compile Include="Pages\Catalogue\Payment.aspx.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Course\Payment.aspx.designer.cs">
+    <Compile Include="Pages\Catalogue\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Course\Catalogue.aspx.cs">
-      <DependentUpon>Catalogue.aspx</DependentUpon>
+    <Compile Include="Pages\Catalogue\Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Course\Catalogue.aspx.designer.cs">
-      <DependentUpon>Catalogue.aspx</DependentUpon>
+    <Compile Include="Pages\Catalogue\Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Course\Details.aspx.cs">
+    <Compile Include="Pages\Catalogue\Details.aspx.cs">
       <DependentUpon>Details.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Course\Details.aspx.designer.cs">
+    <Compile Include="Pages\Catalogue\Details.aspx.designer.cs">
       <DependentUpon>Details.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Course\Curriculum.aspx.cs">

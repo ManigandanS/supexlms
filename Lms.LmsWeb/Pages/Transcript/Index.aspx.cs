@@ -13,9 +13,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Lms.LmsWeb.Account
+namespace Lms.LmsWeb.Transcript
 {
-    public partial class Transcript : SecurePage
+    public partial class Index : SecurePage
     {
 
         static Logger logger = LogManager.GetCurrentClassLogger();

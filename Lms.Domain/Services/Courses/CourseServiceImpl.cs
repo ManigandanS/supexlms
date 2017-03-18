@@ -6,6 +6,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,35 +22,6 @@ namespace Lms.Domain.Services.Courses
             this.unitOfWork = unitOfWork;
         }
 
-        
-        
-
-        public void UnpublishCourse(string companyId, string updaterId, string courseId)
-        {
-            var course = unitOfWork.CourseRepository.GetById(courseId);
-
-            if (course.CompanyId == companyId)
-            {
-                course.Unpublish();
-                unitOfWork.CourseRepository.Update(course);
-                unitOfWork.SaveChanges();
-            }
-        }
-
-        public void PublishCourse(string companyId, string updaterId, string courseId)
-        {
-            var course = unitOfWork.CourseRepository.GetById(courseId);
-
-            if (course.CompanyId == companyId)
-            {
-                course.Publish();
-                unitOfWork.CourseRepository.Update(course);
-                unitOfWork.SaveChanges();
-            }
-        }
-
-
-        
         public Course GetCourseById(string companyId, string courseId)
         {
             var course = unitOfWork.CourseRepository.GetById(courseId);
@@ -143,24 +115,12 @@ namespace Lms.Domain.Services.Courses
 
         public IEnumerable<Course> LoadAllCourses(string companyId)
         {
-            return unitOfWork.CourseRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted).ToList();
+            return unitOfWork.CourseRepository.GetAllAsNoTracking().Where(x => x.CompanyId == companyId && !x.IsDeleted).ToList();
         }
 
-        public IEnumerable<Course> LoadAllPublishedCourses(string companyId, string userId)
+        public IEnumerable<Course> FindCourses(string companyId, Func<Course, bool> predicate)
         {
-            var courses = unitOfWork.CourseRepository.FindAsNoTracking(x => x.CompanyId == companyId && !x.IsDeleted && x.IsPublished);
-            var user = unitOfWork.UserRepository.GetById(userId);
-
-            if (user.UserType == Models.Users.UserTypeEnum.External)
-            {
-                courses = courses.Where(x => x.CourseAccess == CourseAccessEnum.ExtenralUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
-            }
-            else // internal
-            {
-                courses = courses.Where(x => x.CourseAccess == CourseAccessEnum.InternalUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
-            }
-
-            return courses;
+            return unitOfWork.CourseRepository.FindAsNoTracking(x => x.CompanyId == companyId).Where(predicate).ToList();
         }
     }
 }

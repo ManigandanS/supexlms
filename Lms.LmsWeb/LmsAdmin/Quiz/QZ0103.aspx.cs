@@ -48,11 +48,7 @@ namespace Lms.LmsWeb.LmsAdmin.Quiz
                             break;
                     }
 
-                    if (question.Quiz.IsPublished)
-                    {
-                        DelBtn.Visible = false;
-                        EditBtn.Visible = false;
-                    }
+                    
                 }
             }
         }

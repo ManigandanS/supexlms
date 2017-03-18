@@ -22,37 +22,7 @@ namespace Lms.LmsWeb.LmsAdmin.Course
             }
         }
 
-
-        protected void PublishBtn_Command(object sender, CommandEventArgs e)
-        {
-            string courseId = e.CommandArgument as string;
-            CourseService.PublishCourse(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId);
-
-            Response.Redirect(Request.RawUrl);
-        }
-
-        protected void UnpublishBtn_Command(object sender, CommandEventArgs e)
-        {
-            string courseId = e.CommandArgument as string;
-            CourseService.UnpublishCourse(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId);
-
-            Response.Redirect(Request.RawUrl);
-        }
-
-        protected void CourseRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                var course = (Domain.Models.Courses.Course)e.Item.DataItem;
-                Button publishBtn = (Button)e.Item.FindControl("PublishBtn");
-
-                if (course.IsPublished)
-                {
-                    publishBtn.Attributes.Add("disabled", "disabled");
-                }
-            }
-        }
-
+        
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
 

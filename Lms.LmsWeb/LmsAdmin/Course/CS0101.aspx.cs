@@ -26,9 +26,6 @@ namespace Lms.LmsWeb.LmsAdmin.Course
                 if (course != null)
                 {
                     CreateLink.NavigateUrl = "CS0102?csid=" + courseId;
-
-                    if (course.IsPublished)
-                        CreateLink.Visible = false;
                 }
             }
 

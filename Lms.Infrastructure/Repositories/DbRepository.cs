@@ -73,30 +73,30 @@ namespace Lms.Infrastructure.Repositories
                 throw ex;
             }
         }
-        
+
 
         public virtual IQueryable<T> GetAll()
         {
             return appDbContext.Set<T>();
         }
 
-        
+
 
         public virtual IQueryable<T> Find(Expression<Func<T, bool>> predicate)
         {
             return appDbContext.Set<T>().Where(predicate);
         }
 
-        
+
         public virtual IQueryable<T> GetAllAsNoTracking()
         {
             return appDbContext.Set<T>().AsNoTracking();
         }
 
-        
+
         public virtual IQueryable<T> FindAsNoTracking(Expression<Func<T, bool>> predicate)
         {
-            return appDbContext.Set<T>().Where(predicate).AsNoTracking();
+            return appDbContext.Set<T>().AsNoTracking().Where(predicate).AsQueryable();
         }
 
         public virtual T GetById(string id)

@@ -21,10 +21,7 @@ namespace Lms.LmsWeb.LmsAdmin.Quiz
 
             if (!IsPostBack && quiz != null)
             {
-                if (quiz.IsPublished)
-                    CreateLink.Visible = false;
-                else
-                    CreateLink.NavigateUrl = "QZ0102?qzid=" + quiz.Id;
+                CreateLink.NavigateUrl = "QZ0102?qzid=" + quiz.Id;
 
                 QuestionRepeater.DataSource = QuizService.GetQuizById(SessionVariable.Current.Company.Id, quiz.Id).LoadActiveQuizQuestions().ToList();
                 QuestionRepeater.DataBind();

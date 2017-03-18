@@ -23,24 +23,6 @@ namespace Lms.LmsWeb.LmsAdmin.Quiz
         }
 
 
-        protected void PublishBtn_Command(object sender, CommandEventArgs e)
-        {
-            string quizId = e.CommandArgument as string;
-            QuizService.PublishQuiz(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, quizId);
-
-            Response.Redirect(Request.RawUrl);
-        }
-
-        
-        protected void QuizRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                
-
-            }
-        }
-
         protected void SearchBtn_Click(object sender, EventArgs e)
         {
 

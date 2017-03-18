@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/LmsAdmin/Admin.Master" AutoEventWireup="true" CodeBehind="CN0001.aspx.cs" Inherits="Lms.LmsWeb.LmsAdmin.Content.CN0001" %>
+<%@ Register Src="~/UserControls/CommonSearch.ascx" TagName="SearchControl" TagPrefix="lms" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -12,16 +13,7 @@
                 </div>
                 <div class="x_content">
 
-                    <section id="search-user">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <asp:TextBox ID="ScormNameText" runat="server" CssClass="form-control" placeholder="Content Keyword"></asp:TextBox>
-                            </div>
-                            <div class="col-sm-2">
-                                <asp:Button ID="SearchBtn" runat="server" Text="Search" CssClass="btn btn-default btn-block" OnClick="SearchBtn_Click" />
-                            </div>
-                        </div>
-                    </section>
+                    <lms:SearchControl ID="SearchControl1" runat="server"></lms:SearchControl>
 
                     <div class="row">
                         <div class="col-xs-12">
@@ -46,7 +38,6 @@
                                                     <td><%# Eval("WebPath") %></td>
                                                     <td><%# Eval("UpdatedTs") %></td>
                                                     <td style="text-align: right;">
-                                                        <asp:Button ID="PublishBtn" runat="server" OnCommand="PublishBtn_Command" CommandArgument='<%# Eval("Id") %>' Text="Publish" CssClass="btn btn-sm btn-primary" Visible='<%# !(bool)Eval("IsPublished") %>' OnClientClick="return confirmPublish();" />
                                                         <a href="<%# "CN0003?id=" + Eval("Id") %>" class="btn btn-sm btn-default">Details</a>
                                                     </td>
                                                 </tr>

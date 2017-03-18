@@ -33,18 +33,14 @@ namespace Lms.Domain.Models.Contents
 
         public void DeleteScorm()
         {
-            if (!this.Lessons.SelectMany(x => x.LessonData).Any())
+            if (!this.Lessons.SelectMany(x => x.ScormData).Any())
                 Directory.Delete(this.PhysicalPath, true);
 
             IsDeleted = true;
             UpdatedTs = DateTime.UtcNow;
         }
 
-        public void PublishScorm()
-        {
-            IsPublished = true;
-            UpdatedTs = DateTime.UtcNow;
-        }
+        
 
         public void EditScorm(string name, string description)
         {
@@ -55,7 +51,7 @@ namespace Lms.Domain.Models.Contents
 
         public long GetNumberOfEnroll()
         {
-            return Lessons.SelectMany(x => x.LessonData).Count();
+            return Lessons.SelectMany(x => x.ScormData).Count();
         }
 
 

@@ -77,7 +77,8 @@ namespace Lms.Domain.Models.Courses
         public string QuizId { get; set; }
 
         public virtual Course Course { get; set; }
-        public virtual ICollection<LessonData> LessonData { get; set; }
+        public virtual ICollection<ScormData> ScormData { get; set; }
+        public virtual ICollection<QuizData> QuizData { get; set; }
         [ForeignKey("ScormId")]
         public virtual Scorm Scorm { get; set; }
         [ForeignKey("QuizId")]

@@ -5,6 +5,7 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,11 +26,17 @@ namespace Lms.Domain.Services.Certificates
             this.unitOfWork = unitOfWork;
         }
 
-        
+
+        public IEnumerable<Certificate> FindCertificates(string companyId, Func<Certificate, bool> predicate)
+        {
+            var result = unitOfWork.CertificateRepository.Find(x => x.IsDeleted == false).Where(predicate);
+
+            return result.ToList();
+        }
 
         public IEnumerable<Certificate> LoadAllCertificates(string companyId)
         {
-            return unitOfWork.CompanyRepository.GetById(companyId).Certificates.Where(x => x.IsDeleted == false);
+            return unitOfWork.CertificateRepository.Find(x => x.IsDeleted == false && x.CompanyId == companyId).ToList();
         }
 
         public void EditCertificate(string companyId, string userId, string certificateId, string name, string description, CertificateExpiryType expiryType, int? expiryMonth)

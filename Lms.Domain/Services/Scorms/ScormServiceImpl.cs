@@ -38,11 +38,7 @@ namespace Lms.Domain.Services.Scorms
             return unitOfWork.ScormRepository.GetAll().Where(x => x.IsDeleted == false && x.CompanyId == companyId).ToList();
         }
 
-        public IEnumerable<Scorm> LoadPublishedScorms(string companyId)
-        {
-            return unitOfWork.ScormRepository.GetAll().Where(x => x.IsDeleted == false && x.CompanyId == companyId && x.IsPublished).ToList();
-        }
-
+        
         private int GetNumberOfScorm(string companyId)
         {
             return unitOfWork.ScormRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted).Count();
@@ -263,16 +259,7 @@ namespace Lms.Domain.Services.Scorms
             }
         }
 
-        public void PublishScorm(string companyId, string userId, string scormId)
-        {
-            var scorm = unitOfWork.ScormRepository.GetById(scormId);
-            if (scorm.CompanyId == companyId)
-            {
-                scorm.PublishScorm();
-                unitOfWork.ScormRepository.Update(scorm);
-                unitOfWork.SaveChanges();
-            }
-        }
+        
 
         private string GetTemporaryDirectory()
         {

@@ -23,10 +23,10 @@ namespace Lms.LmsWeb.LmsAdmin.Course
 
             if (!IsPostBack)
             {
-                ScormRepeater.DataSource = ScormService.LoadPublishedScorms(SessionVariable.Current.Company.Id).OrderBy(x => x.Name);
+                ScormRepeater.DataSource = ScormService.LoadAllScorms(SessionVariable.Current.Company.Id).OrderBy(x => x.Name);
                 ScormRepeater.DataBind();
 
-                QuizRepeater.DataSource = QuizService.LoadPublishedQuizzes(SessionVariable.Current.Company.Id).OrderBy(x => x.Title);
+                QuizRepeater.DataSource = QuizService.LoadAllQuizzes(SessionVariable.Current.Company.Id).OrderBy(x => x.Title);
                 QuizRepeater.DataBind();
 
                 var lesson = LessonService.GetLessonById(SessionVariable.Current.Company.Id, courseId, lessonId);

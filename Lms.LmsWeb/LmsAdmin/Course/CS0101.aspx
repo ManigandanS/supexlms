@@ -37,8 +37,8 @@
                                                 <td><%# Eval("Description") %></td>
                                                 <td><%# Eval("UpdatedTs") %></td>
                                                 <td style="text-align: right;">
-                                                    <asp:HyperLink ID="EditLink" runat="server" Text="Edit" CssClass="btn btn-default btn-sm" NavigateUrl='<%# "CS0103?csid=" + Eval("CourseId") + "&lsid=" + Eval("Id") %>' Visible='<%# !(bool)Eval("Course.IsPublished") %>'></asp:HyperLink>
-                                                    <asp:Button ID="DelBtn" runat="server" OnCommand="DelBtn_Command" CommandArgument='<%# Eval("Id") %>' Text="Delete" CssClass="btn btn-danger btn-sm" Visible='<%# !(bool)Eval("Course.IsPublished") %>' />
+                                                    <asp:HyperLink ID="EditLink" runat="server" Text="Edit" CssClass="btn btn-default btn-sm" NavigateUrl='<%# "CS0103?csid=" + Eval("CourseId") + "&lsid=" + Eval("Id") %>'></asp:HyperLink>
+                                                    <asp:Button ID="DelBtn" runat="server" OnCommand="DelBtn_Command" CommandArgument='<%# Eval("Id") %>' Text="Delete" CssClass="btn btn-danger btn-sm" />
                                                 </td>
                                             </tr>
                                         </ItemTemplate>

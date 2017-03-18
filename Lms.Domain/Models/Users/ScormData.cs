@@ -8,9 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lms.Domain.Models.Quizzes
+namespace Lms.Domain.Models.Users
 {
-    public enum QuizDataResultEnum
+    public enum ScormDataResultEnum
     {
         NotStarted,
         Started,
@@ -19,11 +19,11 @@ namespace Lms.Domain.Models.Quizzes
         Pending
     }
 
-    public class QuizData
+    public class ScormData
     {
 
 
-        public QuizData()
+        public ScormData()
         {
             this.Id = Guid.NewGuid().ToString();
         }
@@ -41,7 +41,7 @@ namespace Lms.Domain.Models.Quizzes
         [StringLength(128)]
         public string LessonId { get; set; }
 
-        public QuizDataResultEnum DataResult { get; set; }
+        public ScormDataResultEnum DataResult { get; set; }
 
         public string TemporaryData { get; set; }
         public string PersistentData { get; set; }
@@ -56,7 +56,7 @@ namespace Lms.Domain.Models.Quizzes
             {
                 switch (DataResult)
                 {
-                    case QuizDataResultEnum.NotStarted:
+                    case ScormDataResultEnum.NotStarted:
                         return "Not Started";
                     default:
                         return DataResult.ToString();

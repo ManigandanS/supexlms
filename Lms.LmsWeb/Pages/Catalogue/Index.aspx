@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Catalogue.aspx.cs" Inherits="Lms.LmsWeb.Course.Catalogue" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Lms.LmsWeb.Catalogue.Index" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -27,10 +27,10 @@
                                 <div class="col-md-3 col-sm-6">
                                     <div class="course-wrapper">
                                         <div>
-                                            <img src="../images/course-image.jpg" class="img-responsive" />
+                                            <img src="/images/course-image.jpg" class="img-responsive" />
                                         </div>
                                         <div class="caption">
-                                            <div class="course-title"><a href="Details?id=<%# Eval("Id") %>"><%# Eval("Name") %></a></div>
+                                            <div class="course-title"><a href="Details?csid=<%# Eval("Id") %>"><%# Eval("Name") %></a></div>
                                             <div class="course-desc"><%# Eval("Description") %></div>
                                         </div>
                                     </div>

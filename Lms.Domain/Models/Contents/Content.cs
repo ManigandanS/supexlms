@@ -26,7 +26,6 @@ namespace Lms.Domain.Models.Contents
         public DateTime UpdatedTs { get; set; }
         public string UpdatedBy { get; set; }
         public bool IsDeleted { get; set; }
-        public bool IsPublished { get; set; }
 
         public virtual Company Company { get; set; }
         [ForeignKey("UpdatedBy")]

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lms.LmsWeb.Course {
+namespace Lms.LmsWeb.Catalogue {
     
     
     public partial class Details {

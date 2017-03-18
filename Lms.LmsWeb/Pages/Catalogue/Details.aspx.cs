@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Lms.LmsWeb.Course
+namespace Lms.LmsWeb.Catalogue
 {
     public partial class Details : SecurePage
     {
@@ -18,7 +18,7 @@ namespace Lms.LmsWeb.Course
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            courseId = Request.QueryString["id"];
+            courseId = Request.QueryString["csid"];
             
             if (!IsPostBack)
             {

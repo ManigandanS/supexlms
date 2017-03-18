@@ -35,7 +35,7 @@
                 <div class="x_content">
                     <asp:Repeater ID="ActiveCourses" runat="server">
                         <ItemTemplate>
-                            <a href='/Course/Curriculum?enid=<%# Eval("Id") %>'>
+                            <a href='/Pages/Course/Curriculum?enid=<%# Eval("Id") %>'>
                                 <div class="col-md-4 col-sm-6">
                                     <div>
                                         <img src="../images/course-image.jpg" class="img-responsive"></div>
@@ -62,7 +62,7 @@
                 <div class="x_content">
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
-                            <a href='/Course/Curriculum?enid=<%# Eval("Id") %>'>
+                            <a href='/Pages/Course/Curriculum?enid=<%# Eval("Id") %>'>
                                 <div class="col-md-4 col-sm-6">
                                     <div>
                                         <img src="../images/course-image.jpg" class="img-responsive"></div>
@@ -88,7 +88,7 @@
                 <div class="x_content">
                     <asp:Repeater ID="NewCourses" runat="server">
                         <ItemTemplate>
-                            <a href='/Course/Details?id=<%# Eval("CourseId") %>'>
+                            <a href='/Pages/Catalogue/Details?csid=<%# Eval("CourseId") %>'>
                                 <div class="col-md-4 col-sm-6">
                                     <div>
                                         <img src="../images/course-image.jpg" class="img-responsive"></div>

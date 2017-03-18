@@ -48,7 +48,7 @@ namespace Lms.LmsWeb.Course
             logger.Debug("userId: " + System.Web.HttpContext.Current.User.Identity.Name);
             logger.Info("Scorm Version 2004 SET Request [enrollementId: " + enid + "], [lessonId: " + lsid + "], [param: " + param + "], [value: " + value + "]");
 
-            lessonService.SetScormLessonData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param, value);
+            lessonService.SetScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param, value);
             
             return true;
         }
@@ -60,7 +60,7 @@ namespace Lms.LmsWeb.Course
         {
             logger.Info("Scorm Version 2004 GET Request [enrollementId: " + enid + "], [lessonId: " + lsid + "], [param: " + param + "]");
 
-            var result = lessonService.GetScormLessonData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param);
+            var result = lessonService.GetScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param);
             logger.Debug(result);
 
             return result;
@@ -138,7 +138,7 @@ namespace Lms.LmsWeb.Course
         {
             logger.Info("Scorm Version 1.2 Commit Request [enrollementId: " + enid + "], [lessonId: " + lsid + "]");
 
-            lessonService.CommitScormLesson(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid);
+            lessonService.CommitScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid);
         }
 
         [OperationContract]
@@ -148,7 +148,7 @@ namespace Lms.LmsWeb.Course
             logger.Debug("userId: " + System.Web.HttpContext.Current.User.Identity.Name);
             logger.Info("Scorm Version 1.2 SET Request [enrollementId: " + enid + "], [lessonId: " + lsid + "], [param: " + param + "], [value: " + value + "]");
 
-            lessonService.SetScormLessonData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param, value);
+            lessonService.SetScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param, value);
             
             return true;
         }
@@ -159,7 +159,7 @@ namespace Lms.LmsWeb.Course
         {
             logger.Info("Scorm Version 1.2 GET Request [enrollementId: " + enid + "], [lessonId: " + lsid + "], [param: " + param + "]");
 
-            var result = lessonService.GetScormLessonData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param);
+            var result = lessonService.GetScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid, param);
             logger.Debug(result);
 
             return result;
@@ -236,7 +236,7 @@ namespace Lms.LmsWeb.Course
         {
             logger.Info("Scorm Version 1.2 Commit Request [enrollementId: " + enid + "], [lessonId: " + lsid + "]");
 
-            lessonService.CommitScormLesson(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid);
+            lessonService.CommitScormData(System.Web.HttpContext.Current.User.Identity.Name, lsid, enid);
         }
     }
 }

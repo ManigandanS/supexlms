@@ -1,4 +1,5 @@
-﻿using Lms.Domain.Models.Courses;
+﻿using Lms.Domain.Models.Contents;
+using Lms.Domain.Models.Courses;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -30,29 +31,16 @@ namespace Lms.Domain.Models.Users
         public Enrollment()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.ScormData = new HashSet<ScormData>();
+            this.QuizData = new HashSet<QuizData>();
         }
 
-        public Enrollment(string userId, string sessionId, List<Lesson> lessons) : this()
+        public Enrollment(string userId, string sessionId) : this()
         {
             this.SessionId = sessionId;
             this.UserId = userId;
             this.EnrollTs = DateTime.UtcNow;
-
-            if (this.LessonData == null)
-                this.LessonData = new List<LessonData>();
-
-            foreach (var lesson in lessons)
-            {
-                this.LessonData.Add(new LessonData()
-                {
-                    DataResult = LessonDataResultEnum.NotStarted,
-                    EnrollmentId = this.Id,
-                    IsCompleted = false,
-                    LessonId = lesson.Id,
-                    LessonType = lesson.LessonType
-                });
-            }
-
+            
         }
 
         
@@ -118,6 +106,7 @@ namespace Lms.Domain.Models.Users
 
         public virtual User User { get; set; }
         public virtual Session Session { get; set; }
-        public virtual ICollection<LessonData> LessonData { get; set; }
+        public virtual ICollection<ScormData> ScormData { get; set; }
+        public virtual ICollection<QuizData> QuizData { get; set; }
     }
 }

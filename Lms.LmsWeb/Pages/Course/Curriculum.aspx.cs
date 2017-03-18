@@ -26,7 +26,7 @@ namespace Lms.LmsWeb.Course
 
                 if (enrollment != null)
                 {
-                    logger.Debug("lesson data count: " + enrollment.LessonData.Count);
+                    logger.Debug("lesson data count: " + enrollment.ScormData.Count);
 
                     CourseName.Text = enrollment.Session.Course.Name;
                     CourseDesc.Text = enrollment.Session.Course.Description;
@@ -42,7 +42,7 @@ namespace Lms.LmsWeb.Course
                         WithdrawBtn.Visible = true;
                     }
 
-                    LessonRepeater.DataSource = enrollment.LessonData.OrderBy(x => x.Lesson.Order).ToList();
+                    LessonRepeater.DataSource = enrollment.ScormData.OrderBy(x => x.Lesson.Order).ToList();
                     LessonRepeater.DataBind();
                 }
             }

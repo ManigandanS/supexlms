@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="form-group" id="scorm-selector">
-                    <asp:Label runat="server" AssociatedControlID="ScormId">Published Content</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="ScormId">Select Content</asp:Label>
                     <asp:HiddenField ID="ScormId" runat="server" />
                     <div>
                         <span class="text-danger" style="display: none;" id="scormIdValidator">Required</span>
@@ -42,7 +42,7 @@
                 </div>
 
                 <div class="form-group" id="quiz-selector" style="display: none;">
-                    <asp:Label runat="server" AssociatedControlID="QuizId">Published Quiz</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="QuizId">Select Quiz</asp:Label>
                     <asp:HiddenField ID="QuizId" runat="server" />
                     <div>
                         <span class="text-danger" style="display: none;" id="quizIdValidator">Required</span>
