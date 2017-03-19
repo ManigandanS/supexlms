@@ -41,7 +41,7 @@ namespace Lms.WebApp
             }
         }
 
-        private static void CreateIISWebsite(string websiteName, string hostname, string phyPath, string appPool)
+        private static void CreateIISWebsite(string websiteName, string hostname, string phyicalPath, string appPool)
         {
             string virtualPath = ConfigurationManager.AppSettings["LmsWebVirDir"] + "\\" + websiteName;
             if (!Directory.Exists(virtualPath))
@@ -50,7 +50,7 @@ namespace Lms.WebApp
             }
 
             ServerManager iisManager = new ServerManager();
-            iisManager.Sites.Add(websiteName, "http", "*:80:" + hostname, phyPath);
+            iisManager.Sites.Add(websiteName, "http", "*:80:" + hostname, phyicalPath);
             iisManager.Sites[websiteName].ApplicationDefaults.ApplicationPoolName = appPool;
             iisManager.Sites[websiteName].Applications.First().VirtualDirectories.Add("/data", virtualPath);
             foreach (var item in iisManager.Sites[websiteName].Applications)

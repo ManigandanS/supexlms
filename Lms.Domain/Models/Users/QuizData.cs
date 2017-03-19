@@ -43,7 +43,6 @@ namespace Lms.Domain.Models.Users
 
         public QuizDataResultEnum DataResult { get; set; }
 
-        public string TemporaryData { get; set; }
         public string PersistentData { get; set; }
 
         public bool IsCompleted { get; set; }

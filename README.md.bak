@@ -27,6 +27,5 @@ SUPEX LMS
     6. Once you create the test website, you don't need to do the above process for development.       
     7. Open MySQL database and run this query.
        UPDATE lms.company SET HostName = 'localhost';
-    8. Set the Lms.LmsWeb project as a start-up project, and lauch the site
-    9. Use credentail you used step 4.
+    8. Set the Lms.LmsWeb project as a start-up project.
     

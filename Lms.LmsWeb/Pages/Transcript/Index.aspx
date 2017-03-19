@@ -43,7 +43,7 @@
                                                                 <td><%# Eval("CompletedTs") %></td>
                                                                 <td><%# Eval("Result") %></td>
                                                                 <td style="text-align: right;">
-                                                                    <a href='/Course/Curriculum?enid=<%# Eval("Id") %>' class="btn btn-primary btn-sm">Open</a>
+                                                                    <a href='/Pages/Course/Curriculum?enid=<%# Eval("Id") %>' class="btn btn-primary btn-sm">Open</a>
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>

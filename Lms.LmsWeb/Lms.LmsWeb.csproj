@@ -395,6 +395,7 @@
     <Content Include="Site.Master" />
     <Content Include="Test.aspx" />
     <Content Include="UserControls\CommonSearch.ascx" />
+    <Content Include="UserControls\CourseSearch.ascx" />
     <Content Include="UserControls\MultiSelectAnswer.ascx" />
     <Content Include="UserControls\KeywordAnswer.ascx" />
     <Content Include="UserControls\SingleSelectAnswer.ascx" />
@@ -5044,6 +5045,13 @@
     </Compile>
     <Compile Include="UserControls\CommonSearch.ascx.designer.cs">
       <DependentUpon>CommonSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\CourseSearch.ascx.cs">
+      <DependentUpon>CourseSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UserControls\CourseSearch.ascx.designer.cs">
+      <DependentUpon>CourseSearch.ascx</DependentUpon>
     </Compile>
     <Compile Include="UserControls\MultiSelectAnswer.ascx.cs">
       <DependentUpon>MultiSelectAnswer.ascx</DependentUpon>

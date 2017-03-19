@@ -3,7 +3,7 @@ namespace Lms.Domain.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class mig : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -52,8 +52,6 @@ namespace Lms.Domain.Migrations
                         UpdatedTs = c.DateTime(nullable: false, precision: 0),
                         CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                         IsDeleted = c.Boolean(nullable: false),
-                        IsPublished = c.Boolean(nullable: false),
-                        PublishedTs = c.DateTime(precision: 0),
                         CertificateId = c.String(maxLength: 128, storeType: "nvarchar"),
                         CourseLocation = c.Int(nullable: false),
                         CourseType = c.Int(nullable: false),
@@ -89,123 +87,12 @@ namespace Lms.Domain.Migrations
                 .Index(t => t.QuizId);
             
             CreateTable(
-                "LessonData",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        EnrollmentId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        LessonId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        LessonType = c.Int(nullable: false),
-                        DataResult = c.Int(nullable: false),
-                        TemporaryData = c.String(unicode: false),
-                        PersistentData = c.String(unicode: false),
-                        IsCompleted = c.Boolean(nullable: false),
-                        Score = c.Single(),
-                    })
-                .PrimaryKey(t => t.Id)                
-                .ForeignKey("Enrollment", t => t.EnrollmentId, cascadeDelete: true)
-                .ForeignKey("Lesson", t => t.LessonId, cascadeDelete: true)
-                .Index(t => t.EnrollmentId)
-                .Index(t => t.LessonId);
-            
-            CreateTable(
-                "Enrollment",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        SessionId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        EnrollTs = c.DateTime(nullable: false, precision: 0),
-                        CompletedTs = c.DateTime(precision: 0),
-                        EnrollStatus = c.Int(nullable: false),
-                        Result = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)                
-                .ForeignKey("Session", t => t.SessionId, cascadeDelete: true)
-                .ForeignKey("User", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.SessionId);
-            
-            CreateTable(
-                "Session",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        CourseId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        Name = c.String(nullable: false, unicode: false),
-                        Description = c.String(unicode: false),
-                        SessionStart = c.DateTime(nullable: false, precision: 0),
-                        SessionEnd = c.DateTime(nullable: false, precision: 0),
-                        EnrollStart = c.DateTime(nullable: false, precision: 0),
-                        EnrollEnd = c.DateTime(nullable: false, precision: 0),
-                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
-                        IsDeleted = c.Boolean(nullable: false),
-                        Cost = c.Double(),
-                        MaxLearner = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)                
-                .ForeignKey("Course", t => t.CourseId, cascadeDelete: true)
-                .Index(t => t.CourseId);
-            
-            CreateTable(
-                "User",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        IsDeleted = c.Boolean(nullable: false),
-                        Email = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
-                        FirstName = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
-                        LastName = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
-                        Password = c.String(unicode: false),
-                        UserType = c.Int(nullable: false),
-                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
-                        TempPassword = c.Boolean(nullable: false),
-                        ResetKey = c.String(unicode: false),
-                        Status = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id)                ;
-            
-            CreateTable(
-                "CompanyAccess",
-                c => new
-                    {
-                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                    })
-                .PrimaryKey(t => new { t.UserId, t.CompanyId })                
-                .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
-                .ForeignKey("User", t => t.UserId, cascadeDelete: true)
-                .Index(t => t.UserId)
-                .Index(t => t.CompanyId);
-            
-            CreateTable(
-                "Notification",
-                c => new
-                    {
-                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        Title = c.String(nullable: false, unicode: false),
-                        Details = c.String(nullable: false, unicode: false),
-                        StartDate = c.DateTime(nullable: false, precision: 0),
-                        EndDate = c.DateTime(nullable: false, precision: 0),
-                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
-                        IsDeleted = c.Boolean(nullable: false),
-                        UpdatedBy = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                        CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
-                    })
-                .PrimaryKey(t => t.Id)                
-                .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
-                .ForeignKey("User", t => t.UpdatedBy, cascadeDelete: true)
-                .Index(t => t.UpdatedBy)
-                .Index(t => t.CompanyId);
-            
-            CreateTable(
                 "Quiz",
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                         CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
                         Description = c.String(unicode: false),
-                        IsPublished = c.Boolean(nullable: false),
                         IsDeleted = c.Boolean(nullable: false),
                         Title = c.String(unicode: false),
                         PassPercent = c.Single(nullable: false),
@@ -251,6 +138,134 @@ namespace Lms.Domain.Migrations
                 .PrimaryKey(t => t.Id)                
                 .ForeignKey("QuizQuestion", t => t.QuizQuestionId, cascadeDelete: true)
                 .Index(t => t.QuizQuestionId);
+            
+            CreateTable(
+                "User",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        IsDeleted = c.Boolean(nullable: false),
+                        Email = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
+                        FirstName = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
+                        LastName = c.String(nullable: false, maxLength: 256, storeType: "nvarchar"),
+                        Password = c.String(unicode: false),
+                        UserType = c.Int(nullable: false),
+                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
+                        TempPassword = c.Boolean(nullable: false),
+                        ResetKey = c.String(unicode: false),
+                        Status = c.Int(nullable: false),
+                        Acquisition = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)                ;
+            
+            CreateTable(
+                "CompanyAccess",
+                c => new
+                    {
+                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => new { t.UserId, t.CompanyId })                
+                .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.CompanyId);
+            
+            CreateTable(
+                "Enrollment",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        UserId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        SessionId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        EnrollTs = c.DateTime(nullable: false, precision: 0),
+                        CompletedTs = c.DateTime(precision: 0),
+                        EnrollStatus = c.Int(nullable: false),
+                        Result = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id)                
+                .ForeignKey("Session", t => t.SessionId, cascadeDelete: true)
+                .ForeignKey("User", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId)
+                .Index(t => t.SessionId);
+            
+            CreateTable(
+                "QuizData",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        EnrollmentId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        LessonId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        DataResult = c.Int(nullable: false),
+                        PersistentData = c.String(unicode: false),
+                        IsCompleted = c.Boolean(nullable: false),
+                        Score = c.Single(),
+                    })
+                .PrimaryKey(t => t.Id)                
+                .ForeignKey("Enrollment", t => t.EnrollmentId, cascadeDelete: true)
+                .ForeignKey("Lesson", t => t.LessonId, cascadeDelete: true)
+                .Index(t => t.EnrollmentId)
+                .Index(t => t.LessonId);
+            
+            CreateTable(
+                "ScormData",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        EnrollmentId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        LessonId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        DataResult = c.Int(nullable: false),
+                        TemporaryData = c.String(unicode: false),
+                        PersistentData = c.String(unicode: false),
+                        IsCompleted = c.Boolean(nullable: false),
+                        Score = c.Single(),
+                    })
+                .PrimaryKey(t => t.Id)                
+                .ForeignKey("Enrollment", t => t.EnrollmentId, cascadeDelete: true)
+                .ForeignKey("Lesson", t => t.LessonId, cascadeDelete: true)
+                .Index(t => t.EnrollmentId)
+                .Index(t => t.LessonId);
+            
+            CreateTable(
+                "Session",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        CourseId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        Name = c.String(nullable: false, unicode: false),
+                        Description = c.String(unicode: false),
+                        SessionStart = c.DateTime(nullable: false, precision: 0),
+                        SessionEnd = c.DateTime(nullable: false, precision: 0),
+                        EnrollStart = c.DateTime(nullable: false, precision: 0),
+                        EnrollEnd = c.DateTime(nullable: false, precision: 0),
+                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
+                        IsDeleted = c.Boolean(nullable: false),
+                        Cost = c.Double(),
+                        MaxLearner = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)                
+                .ForeignKey("Course", t => t.CourseId, cascadeDelete: true)
+                .Index(t => t.CourseId);
+            
+            CreateTable(
+                "Notification",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        Title = c.String(nullable: false, unicode: false),
+                        Details = c.String(nullable: false, unicode: false),
+                        StartDate = c.DateTime(nullable: false, precision: 0),
+                        EndDate = c.DateTime(nullable: false, precision: 0),
+                        UpdatedTs = c.DateTime(nullable: false, precision: 0),
+                        IsDeleted = c.Boolean(nullable: false),
+                        UpdatedBy = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.Id)                
+                .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("User", t => t.UpdatedBy, cascadeDelete: true)
+                .Index(t => t.UpdatedBy)
+                .Index(t => t.CompanyId);
             
             CreateTable(
                 "UserCertificate",
@@ -337,13 +352,37 @@ namespace Lms.Domain.Migrations
                         UpdatedTs = c.DateTime(nullable: false, precision: 0),
                         UpdatedBy = c.String(maxLength: 128, storeType: "nvarchar"),
                         IsDeleted = c.Boolean(nullable: false),
-                        IsPublished = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)                
                 .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
                 .ForeignKey("User", t => t.UpdatedBy)
                 .Index(t => t.CompanyId)
                 .Index(t => t.UpdatedBy);
+            
+            CreateTable(
+                "CompanyConfiguration",
+                c => new
+                    {
+                        CompanyId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        ConfigurationId = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        ConfigJson = c.String(unicode: false),
+                    })
+                .PrimaryKey(t => new { t.CompanyId, t.ConfigurationId })                
+                .ForeignKey("Company", t => t.CompanyId, cascadeDelete: true)
+                .ForeignKey("Configuration", t => t.ConfigurationId, cascadeDelete: true)
+                .Index(t => t.CompanyId)
+                .Index(t => t.ConfigurationId);
+            
+            CreateTable(
+                "Configuration",
+                c => new
+                    {
+                        Id = c.String(nullable: false, maxLength: 128, storeType: "nvarchar"),
+                        Title = c.String(nullable: false, unicode: false),
+                        Description = c.String(nullable: false, unicode: false),
+                        Code = c.String(nullable: false, maxLength: 6, storeType: "nvarchar"),
+                    })
+                .PrimaryKey(t => t.Id)                ;
             
             CreateTable(
                 "Organization",
@@ -400,10 +439,11 @@ namespace Lms.Domain.Migrations
         {
             DropForeignKey("Plan", "CurrencyId", "Currency");
             DropForeignKey("Organization", "Company_Id", "Company");
+            DropForeignKey("CompanyConfiguration", "ConfigurationId", "Configuration");
+            DropForeignKey("CompanyConfiguration", "CompanyId", "Company");
             DropForeignKey("Scorm", "UpdatedBy", "User");
             DropForeignKey("Lesson", "ScormId", "Scorm");
             DropForeignKey("Scorm", "CompanyId", "Company");
-            DropForeignKey("LessonData", "LessonId", "Lesson");
             DropForeignKey("UserRole", "UserId", "User");
             DropForeignKey("UserRole", "RoleId", "Role");
             DropForeignKey("Role", "CompanyId", "Company");
@@ -413,24 +453,29 @@ namespace Lms.Domain.Migrations
             DropForeignKey("UserCertificate", "UserId", "User");
             DropForeignKey("UserCertificate", "CertificateId", "Certificate");
             DropForeignKey("Quiz", "UpdatedBy", "User");
+            DropForeignKey("Notification", "UpdatedBy", "User");
+            DropForeignKey("Notification", "CompanyId", "Company");
+            DropForeignKey("Enrollment", "UserId", "User");
+            DropForeignKey("Enrollment", "SessionId", "Session");
+            DropForeignKey("Session", "CourseId", "Course");
+            DropForeignKey("ScormData", "LessonId", "Lesson");
+            DropForeignKey("ScormData", "EnrollmentId", "Enrollment");
+            DropForeignKey("QuizData", "LessonId", "Lesson");
+            DropForeignKey("QuizData", "EnrollmentId", "Enrollment");
+            DropForeignKey("CompanyAccess", "UserId", "User");
+            DropForeignKey("CompanyAccess", "CompanyId", "Company");
             DropForeignKey("QuizAnswer", "QuizQuestionId", "QuizQuestion");
             DropForeignKey("QuizQuestion", "QuizId", "Quiz");
             DropForeignKey("Lesson", "QuizId", "Quiz");
             DropForeignKey("Quiz", "CompanyId", "Company");
-            DropForeignKey("Notification", "UpdatedBy", "User");
-            DropForeignKey("Notification", "CompanyId", "Company");
-            DropForeignKey("Enrollment", "UserId", "User");
-            DropForeignKey("CompanyAccess", "UserId", "User");
-            DropForeignKey("CompanyAccess", "CompanyId", "Company");
-            DropForeignKey("Enrollment", "SessionId", "Session");
-            DropForeignKey("Session", "CourseId", "Course");
-            DropForeignKey("LessonData", "EnrollmentId", "Enrollment");
             DropForeignKey("Lesson", "CourseId", "Course");
             DropForeignKey("Course", "CompanyId", "Company");
             DropForeignKey("Course", "CertificateId", "Certificate");
             DropForeignKey("Certificate", "CompanyId", "Company");
             DropIndex("Plan", new[] { "CurrencyId" });
             DropIndex("Organization", new[] { "Company_Id" });
+            DropIndex("CompanyConfiguration", new[] { "ConfigurationId" });
+            DropIndex("CompanyConfiguration", new[] { "CompanyId" });
             DropIndex("Scorm", new[] { "UpdatedBy" });
             DropIndex("Scorm", new[] { "CompanyId" });
             DropIndex("Role", new[] { "CompanyId" });
@@ -441,19 +486,21 @@ namespace Lms.Domain.Migrations
             DropIndex("UserGroup", new[] { "UserId" });
             DropIndex("UserCertificate", new[] { "CertificateId" });
             DropIndex("UserCertificate", new[] { "UserId" });
+            DropIndex("Notification", new[] { "CompanyId" });
+            DropIndex("Notification", new[] { "UpdatedBy" });
+            DropIndex("Session", new[] { "CourseId" });
+            DropIndex("ScormData", new[] { "LessonId" });
+            DropIndex("ScormData", new[] { "EnrollmentId" });
+            DropIndex("QuizData", new[] { "LessonId" });
+            DropIndex("QuizData", new[] { "EnrollmentId" });
+            DropIndex("Enrollment", new[] { "SessionId" });
+            DropIndex("Enrollment", new[] { "UserId" });
+            DropIndex("CompanyAccess", new[] { "CompanyId" });
+            DropIndex("CompanyAccess", new[] { "UserId" });
             DropIndex("QuizAnswer", new[] { "QuizQuestionId" });
             DropIndex("QuizQuestion", new[] { "QuizId" });
             DropIndex("Quiz", new[] { "UpdatedBy" });
             DropIndex("Quiz", new[] { "CompanyId" });
-            DropIndex("Notification", new[] { "CompanyId" });
-            DropIndex("Notification", new[] { "UpdatedBy" });
-            DropIndex("CompanyAccess", new[] { "CompanyId" });
-            DropIndex("CompanyAccess", new[] { "UserId" });
-            DropIndex("Session", new[] { "CourseId" });
-            DropIndex("Enrollment", new[] { "SessionId" });
-            DropIndex("Enrollment", new[] { "UserId" });
-            DropIndex("LessonData", new[] { "LessonId" });
-            DropIndex("LessonData", new[] { "EnrollmentId" });
             DropIndex("Lesson", new[] { "QuizId" });
             DropIndex("Lesson", new[] { "ScormId" });
             DropIndex("Lesson", new[] { "CourseId" });
@@ -464,21 +511,24 @@ namespace Lms.Domain.Migrations
             DropTable("Plan");
             DropTable("Currency");
             DropTable("Organization");
+            DropTable("Configuration");
+            DropTable("CompanyConfiguration");
             DropTable("Scorm");
             DropTable("Role");
             DropTable("UserRole");
             DropTable("Group");
             DropTable("UserGroup");
             DropTable("UserCertificate");
+            DropTable("Notification");
+            DropTable("Session");
+            DropTable("ScormData");
+            DropTable("QuizData");
+            DropTable("Enrollment");
+            DropTable("CompanyAccess");
+            DropTable("User");
             DropTable("QuizAnswer");
             DropTable("QuizQuestion");
             DropTable("Quiz");
-            DropTable("Notification");
-            DropTable("CompanyAccess");
-            DropTable("User");
-            DropTable("Session");
-            DropTable("Enrollment");
-            DropTable("LessonData");
             DropTable("Lesson");
             DropTable("Course");
             DropTable("Certificate");

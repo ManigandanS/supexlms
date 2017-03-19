@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Lms.LmsWeb.Catalogue {
+namespace Lms.LmsWeb.UserControls {
     
     
-    public partial class Index {
+    public partial class CourseSearch {
         
         /// <summary>
-        /// SearchControl1 control.
+        /// SearchKeyword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Lms.LmsWeb.UserControls.CourseSearch SearchControl1;
+        protected global::System.Web.UI.WebControls.TextBox SearchKeyword;
         
         /// <summary>
-        /// CourseRepeater control.
+        /// SearchBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CourseRepeater;
+        protected global::System.Web.UI.WebControls.Button SearchBtn;
     }
 }

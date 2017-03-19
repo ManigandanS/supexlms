@@ -241,7 +241,6 @@ namespace Lms.Domain.Services.Courses
             quizData.LessonId = lessonId;
             quizData.IsCompleted = true;
             quizData.DataResult = score >= passPercent ? QuizDataResultEnum.Passed : QuizDataResultEnum.Faild;
-            quizData.TemporaryData = JsonConvert.SerializeObject(userAnswers);
             quizData.PersistentData = JsonConvert.SerializeObject(userAnswers);
             quizData.Score = score;
             enrollment.QuizData.Add(quizData);

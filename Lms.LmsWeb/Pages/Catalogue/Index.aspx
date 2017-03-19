@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Index.aspx.cs" Inherits="Lms.LmsWeb.Catalogue.Index" %>
+<%@ Register Src="~/UserControls/CourseSearch.ascx" TagName="SearchControl" TagPrefix="lms" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -10,16 +11,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <section id="search-course">
-                        <div class="row">
-                            <div class="col-sm-10">
-                                <asp:TextBox ID="SearchText" runat="server" CssClass="form-control" placeholder="SEARCH"></asp:TextBox>
-                            </div>
-                            <div class="col-sm-2">
-                                <asp:Button ID="SearchBtn" runat="server" Text="Search" OnClick="SearchBtn_Click" CssClass="btn btn-default btn-block" />
-                            </div>
-                        </div>
-                    </section>
+                    <lms:SearchControl ID="SearchControl1" runat="server"></lms:SearchControl>
 
                     <div class="row">
                         <asp:Repeater ID="CourseRepeater" runat="server">

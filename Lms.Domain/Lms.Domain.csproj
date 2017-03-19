@@ -79,37 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Gateways\Payments\IPaymentService.cs" />
-    <Compile Include="Migrations\201701100351251_mig.cs" />
-    <Compile Include="Migrations\201701100351251_mig.Designer.cs">
-      <DependentUpon>201701100351251_mig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201701110436309_mig1.cs" />
-    <Compile Include="Migrations\201701110436309_mig1.Designer.cs">
-      <DependentUpon>201701110436309_mig1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702040612035_mig2.cs" />
-    <Compile Include="Migrations\201702040612035_mig2.Designer.cs">
-      <DependentUpon>201702040612035_mig2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702040652199_mig3.cs" />
-    <Compile Include="Migrations\201702040652199_mig3.Designer.cs">
-      <DependentUpon>201702040652199_mig3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702040657494_mig4.cs" />
-    <Compile Include="Migrations\201702040657494_mig4.Designer.cs">
-      <DependentUpon>201702040657494_mig4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201702050142577_mig5.cs" />
-    <Compile Include="Migrations\201702050142577_mig5.Designer.cs">
-      <DependentUpon>201702050142577_mig5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703180130203_mig6.cs" />
-    <Compile Include="Migrations\201703180130203_mig6.Designer.cs">
-      <DependentUpon>201703180130203_mig6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201703180229185_mig7.cs" />
-    <Compile Include="Migrations\201703180229185_mig7.Designer.cs">
-      <DependentUpon>201703180229185_mig7.cs</DependentUpon>
+    <Compile Include="Migrations\201703192135317_Initial.cs" />
+    <Compile Include="Migrations\201703192135317_Initial.Designer.cs">
+      <DependentUpon>201703192135317_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Certificates\Certificate.cs" />
@@ -198,32 +170,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201701100351251_mig.resx">
-      <DependentUpon>201701100351251_mig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201701110436309_mig1.resx">
-      <DependentUpon>201701110436309_mig1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702040612035_mig2.resx">
-      <DependentUpon>201702040612035_mig2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702040652199_mig3.resx">
-      <DependentUpon>201702040652199_mig3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702040657494_mig4.resx">
-      <DependentUpon>201702040657494_mig4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201702050142577_mig5.resx">
-      <DependentUpon>201702050142577_mig5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703180130203_mig6.resx">
-      <DependentUpon>201703180130203_mig6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201703180229185_mig7.resx">
-      <DependentUpon>201703180229185_mig7.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201703192135317_Initial.resx">
+      <DependentUpon>201703192135317_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
