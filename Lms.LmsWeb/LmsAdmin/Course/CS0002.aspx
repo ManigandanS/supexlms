@@ -55,7 +55,7 @@
                                 </asp:DropDownList>
                             </div>
 
-                            <div class="form-group">
+                            <div class="form-group" id="div-certificate">
                                 <asp:Label runat="server" AssociatedControlID="CertificateDropDownList">Certificate</asp:Label>
                                 <asp:DropDownList ID="CertificateDropDownList" runat="server" CssClass="form-control">
                                 </asp:DropDownList>
@@ -81,14 +81,14 @@
                 // checked one; you don't need to test for this
 
 
-                $("#<%= CourseAccessDropDownList.ClientID %>").empty();
+                //$("#<%= CourseAccessDropDownList.ClientID %>").empty();
 
-                if ($(this).val() == 0) {
-                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
-                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='1'>External Users Only</option>");
-                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='2'>Both Users</option>");
-                } else {
-                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
+                if ($(this).val() == 0) {                    
+                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
+                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='1'>External Users Only</option>");
+                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='2'>Both Users</option>");
+                } else {                    
+                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
                 }
             });
         });

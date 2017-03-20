@@ -22,7 +22,7 @@ namespace Lms.LmsWeb.Transcript
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            GradeRepeater.DataSource = UserService.LoadFinishedCourses(SessionVariable.Current.User.Id);
+            GradeRepeater.DataSource = EnrolService.LoadFinishedCourses(SessionVariable.Current.User.Id);
             GradeRepeater.DataBind();
 
             CertificateRepeater.DataSource = UserService.LoadUserCertificates(SessionVariable.Current.User.Id);

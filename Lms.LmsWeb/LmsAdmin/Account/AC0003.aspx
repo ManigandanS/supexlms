@@ -21,9 +21,12 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+                                <li role="presentation"><a href="#manager" aria-controls="manager" role="tab" data-toggle="tab">Manager</a></li>
                                 <li role="presentation"><a href="#courseRecord" aria-controls="courseRecord" role="tab" data-toggle="tab">Course</a></li>
                                 <li role="presentation"><a href="#certificateRecord" aria-controls="certificateRecord" role="tab" data-toggle="tab">Certificate</a></li>
                             </ul>
+
+                            <div style="height: 10px;"></div>
 
                             <!-- Tab panes -->
                             <div class="tab-content">
@@ -71,12 +74,44 @@
                                     </div>
                                 </div>
 
+
+                                <div role="tabpanel" class="tab-pane" id="manager">
+                                    <div>
+                                        <a href="AC0005?acid=<%= Request.QueryString["acid"] %>" class="btn btn-primary btn-sm">Create New</a>
+                                    </div>
+                                    <div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Manager Name</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <asp:Repeater ID="ManagerRepeater" runat="server">
+                                                    <ItemTemplate>
+                                                        <tr>
+                                                            <td><%# Eval("Manager.DecryptedFullName") %></td>                                                            
+                                                            <td style="text-align: right;">
+                                                                <asp:Button ID="ManagerDelBtn" runat="server" CssClass="btn btn-danger btn-sm" Text="Delete" />
+                                                            </td>
+                                                        </tr>
+                                                    </ItemTemplate>
+                                                </asp:Repeater>
+                                            </tbody>
+
+                                        </table>
+                                    </div>
+                                </div>
+
+
                                 <div role="tabpanel" class="tab-pane" id="courseRecord">
                                     <div>
                                         <table class="table">
                                             <thead>
                                                 <tr>
                                                     <th>Course Name</th>
+                                                    <th>Session Name</th>
                                                     <th>Completed Date</th>
                                                     <th>Result</th>
                                                     <th></th>
@@ -87,6 +122,7 @@
                                                     <ItemTemplate>
                                                         <tr>
                                                             <td><%# Eval("Session.Course.Name") %></td>
+                                                            <td><%# Eval("Session.Name") %></td>
                                                             <td><%# Eval("CompletedTs") %></td>
                                                             <td><%# Eval("Result") %></td>
                                                             <td style="text-align: right;">

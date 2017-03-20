@@ -1,4 +1,5 @@
 ﻿using Lms.Domain.Models.Courses;
+using Lms.Domain.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Lms.Domain.Services.Courses
     public interface ICourseService
     {
         IEnumerable<Course> LoadAllCourses(string companyId);
+
+        IEnumerable<Course> LoadAllCourses(string companyId, UserTypeEnum userType);
 
         IEnumerable<Course> FindCourses(string companyId, Func<Course, bool> predicate);
 

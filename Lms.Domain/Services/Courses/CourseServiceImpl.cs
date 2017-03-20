@@ -113,9 +113,23 @@ namespace Lms.Domain.Services.Courses
             }
         }
 
+        public IEnumerable<Course> LoadAllCourses(string companyId, UserTypeEnum userType)
+        {
+            var result = unitOfWork.CourseRepository.GetAllAsNoTracking().Where(x => x.CompanyId == companyId && !x.IsDeleted);
+
+            if (userType == Models.Users.UserTypeEnum.External)
+            {
+                return result.Where(x => x.CourseAccess == CourseAccessEnum.ExtenralUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
+            }
+            else // internal
+            {
+                return result.Where(x => x.CourseAccess == CourseAccessEnum.InternalUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
+            }
+        }
+
         public IEnumerable<Course> LoadAllCourses(string companyId)
         {
-            return unitOfWork.CourseRepository.GetAllAsNoTracking().Where(x => x.CompanyId == companyId && !x.IsDeleted).ToList();
+            return unitOfWork.CourseRepository.GetAllAsNoTracking().Where(x => x.CompanyId == companyId && !x.IsDeleted);
         }
 
         public IEnumerable<Course> FindCourses(string companyId, Func<Course, bool> predicate)

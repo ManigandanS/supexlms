@@ -16,7 +16,7 @@ namespace Lms.LmsWeb.Catalogue
 
             if (!IsPostBack)
             {
-                CourseRepeater.DataSource = CourseService.LoadAllCourses(SessionVariable.Current.Company.Id).ToList();
+                CourseRepeater.DataSource = CourseService.LoadAllCourses(SessionVariable.Current.Company.Id, SessionVariable.Current.User.UserType).ToList();
                 CourseRepeater.DataBind();
             }
         }

@@ -84,6 +84,10 @@ namespace Lms.LmsWeb.Catalogue
 
                 var session = SessionService.GetSessionById(SessionVariable.Current.Company.Id, sessionId);
 
+                if (session.Course.CourseType == CourseTypeEnum.External)
+                    Response.Redirect("Request?ssid=" + sessionId);
+                
+
                 if (session.Cost != null & session.Cost > 0)
                 {
                     Response.Redirect("Payment?ssid=" + sessionId);

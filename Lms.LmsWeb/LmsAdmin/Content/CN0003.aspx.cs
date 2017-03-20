@@ -45,7 +45,7 @@ namespace Lms.LmsWeb.LmsAdmin.Content
                 ScormService.EditScorm(SessionVariable.Current.User.Id, SessionVariable.Current.Company.Id,
                     scormId, Name.Text, Description.Text);
 
-                Response.Redirect(Request.RawUrl);
+                Response.Redirect("CN0001");
             }
         }
 

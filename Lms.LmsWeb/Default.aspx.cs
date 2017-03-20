@@ -18,7 +18,7 @@ namespace Lms.LmsWeb
                     .OrderByDescending(x => x.StartDate).ToList();
                 ActiveNotifications.DataBind();
 
-                var activeCourses = UserService.LoadActiveEnrollments(SessionVariable.Current.User.Id).OrderBy(x => x.Session.Course.Name);
+                var activeCourses = EnrolService.LoadActiveEnrollments(SessionVariable.Current.User.Id).OrderBy(x => x.Session.Course.Name);
                 ActiveCourses.DataSource = activeCourses;
                 ActiveCourses.DataBind();
 
@@ -29,7 +29,7 @@ namespace Lms.LmsWeb
                 Panel2.Visible = false;
 
 
-                var newCourses = SessionService.LoadNewSessions(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id).OrderBy(x => x.Course.Name);
+                var newCourses = SessionService.LoadNewSessions(SessionVariable.Current.Company.Id, SessionVariable.Current.User.UserType).OrderBy(x => x.Course.Name);
                 NewCourses.DataSource = newCourses;
                 NewCourses.DataBind();
 

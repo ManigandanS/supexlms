@@ -38,8 +38,8 @@
                                                     <td><%# Eval("CourseAccessDisplay") %></td>
                                                     <td style="text-align: right;">
                                                         <asp:HyperLink runat="server" NavigateUrl='<%# "CS0003?csid=" + Eval("Id") %>' Text="Details" CssClass="btn btn-default btn-sm"></asp:HyperLink>
-                                                        <asp:Button ID="CurriculumBtn" runat="server" Text="Curriculum" CssClass="btn btn-warning btn-sm"  Enabled='<%# (CourseTypeEnum)Eval("CourseType") == CourseTypeEnum.Intenral %>' CommandArgument='<%# Eval("Id") %>' OnCommand="CurriculumBtn_Command"/>
-                                                        <a href="CS0201?csid=<%# Eval("Id") %>" class="btn btn-warning btn-sm">Session</a>
+                                                        <asp:Button ID="CurriculumBtn" runat="server" Text="Curriculum" CssClass="btn btn-default btn-sm"  Enabled='<%# (CourseTypeEnum)Eval("CourseType") == CourseTypeEnum.Intenral %>' CommandArgument='<%# Eval("Id") %>' OnCommand="CurriculumBtn_Command"/>
+                                                        <a href="CS0201?csid=<%# Eval("Id") %>" class="btn btn-default btn-sm">Session</a>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>

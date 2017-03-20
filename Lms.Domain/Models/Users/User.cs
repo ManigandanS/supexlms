@@ -42,6 +42,7 @@ namespace Lms.Domain.Models.Users
         {
             this.Id = Guid.NewGuid().ToString();
             logger.Debug("Default constructor: " + this.Id);
+            UserManagers = new HashSet<UserManager>();
         }
 
 
@@ -190,5 +191,8 @@ namespace Lms.Domain.Models.Users
         public virtual ICollection<UserCertificate> UserCertificates { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<Quiz> Quizzes { get; set; }
+
+        [InverseProperty("User")]
+        public virtual ICollection<UserManager> UserManagers { get; set; }
     }
 }

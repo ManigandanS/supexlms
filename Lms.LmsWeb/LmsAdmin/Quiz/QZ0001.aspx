@@ -38,7 +38,7 @@
                                                     <td style="text-align: right;">
                                                         <a href="<%# "QZ0003?id=" + Eval("Id") %>" class="btn btn-default btn-sm">Details</a>
 
-                                                        <a href='QZ0101?qzid=<%# Eval("Id") %>' class="btn btn-warning btn-sm">Question</a>
+                                                        <a href='QZ0101?qzid=<%# Eval("Id") %>' class="btn btn-default btn-sm">Question</a>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>

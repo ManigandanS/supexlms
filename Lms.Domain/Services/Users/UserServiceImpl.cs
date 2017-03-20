@@ -36,11 +36,7 @@ namespace Lms.Domain.Services.Users
             return unitOfWork.UserRepository.GetById(userId).UserCertificates.ToList();
         }
 
-        public IEnumerable<Enrollment> LoadFinishedCourses(string userId)
-        {
-            var user = unitOfWork.UserRepository.GetById(userId);
-            return user.Enrollments.Where(x => x.Result != EnrollResultEnum.Pending).Union(user.Enrollments.Where(x => x.Session.SessionEnd < DateTime.UtcNow));
-        }
+        
 
         public void CreateRole(string companyId, string updaterId, string name, string description)
         {
@@ -69,27 +65,7 @@ namespace Lms.Domain.Services.Users
                 .OrderBy(x => x.Name).ToList();
         }
 
-        public Enrollment GetEnrollment(string enrollmentId)
-        {
-            return unitOfWork.EnrollmentRepository.GetById(enrollmentId);
-        }
-
-        public IEnumerable<Enrollment> LoadActiveEnrollments(string userId)
-        {
-            List<Enrollment> activeEnrollments = new List<Enrollment>();
-            var enrollments = unitOfWork.UserRepository.GetById(userId).Enrollments;
-            logger.Debug("total enroll count: " + enrollments.Count);
-
-            foreach (var item in enrollments)
-            {
-                if (item.IsActiveEnrollment())
-                {
-                    activeEnrollments.Add(item);
-                }
-            }
-
-            return activeEnrollments;
-        }
+        
 
         public void RegisterUser(string hostName, string username, string password, string firstName, string lastName)
         {
@@ -163,7 +139,33 @@ namespace Lms.Domain.Services.Users
             }
         }
 
+        public IEnumerable<User> FindManagersByName(string companyId, string userId, string name)
+        {
+            var result1 = unitOfWork.UserRepository.GetAllAsNoTracking().SelectMany(x => x.CompanyAccesses).Where(x => x.CompanyId == companyId)
+                .Select(x => x.User).ToList();
 
-        
+            if (!string.IsNullOrEmpty(name))
+                result1 = result1.Where(x => x.DecryptedFullName.ToLower().Contains(name.ToLower())).ToList();
+
+            return result1;
+        }
+
+
+        public void AddManager(string companyId, string userId, string managerId)
+        {
+            logger.Info("userId: {0}, managerId: {1}", userId, managerId);
+
+            var user = unitOfWork.UserRepository.GetById(userId);
+            user.UserManagers.Add(new UserManager() { ManagerId = managerId, User = user });
+            unitOfWork.UserRepository.Update(user);
+            unitOfWork.SaveChanges();
+        }
+
+
+
+        public void RemoveManager(string companyId, string userId, string managerId)
+        {
+
+        }
     }
 }

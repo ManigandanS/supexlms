@@ -18,6 +18,7 @@ using Lms.Domain.Gateways.Payments;
 using Lms.Domain.Services.Plans;
 using Lms.Domain.Services.Auths;
 using Lms.Domain.Services.Configs;
+using Lms.Domain.Services.Enrolments;
 
 namespace Lms.LmsWeb.Models
 {
@@ -55,6 +56,8 @@ namespace Lms.LmsWeb.Models
         public IPaymentService PaymentService { get; set; }
         [Inject]
         public IConfigService ConfigService { get; set; }
+        [Inject]
+        public IEnrolService EnrolService { get; set; }
 
 
         private readonly static Logger logger = LogManager.GetCurrentClassLogger();

@@ -23,6 +23,7 @@ namespace Lms.LmsWeb.App_Start
     using Lms.Infrastructure.Gateways.Payments;
     using Lms.Domain.Services.Auths;
     using Lms.Domain.Services.Configs;
+    using Lms.Domain.Services.Enrolments;
 
     public static class NinjectWebCommon
     {
@@ -90,6 +91,7 @@ namespace Lms.LmsWeb.App_Start
             kernel.Bind<ISessionService>().To<SessionServiceImpl>();
             kernel.Bind<ILessonService>().To<LessonServiceImpl>();
             kernel.Bind<IConfigService>().To<ConfigServiceImpl>();
+            kernel.Bind<IEnrolService>().To<EnrolServiceImpl>();
         }
     }
 }

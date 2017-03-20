@@ -36,7 +36,7 @@ namespace Lms.LmsWeb.LmsAdmin.Course
         protected void DelBtn_Command(object sender, CommandEventArgs e)
         {
             string sessionId = e.CommandArgument as string;
-            SessionService.DeleteSession(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId, sessionId);
+            SessionService.DeleteSession(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, sessionId);
 
             Response.Redirect(Request.RawUrl);
         }

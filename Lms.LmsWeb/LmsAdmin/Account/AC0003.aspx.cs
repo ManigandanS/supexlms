@@ -19,7 +19,7 @@ namespace Lms.LmsWeb.LmsAdmin.Account
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userId = Request.QueryString["id"];
+            string userId = Request.QueryString["acid"];
             user = UserService.GetUserById(SessionVariable.Current.Company.Id, userId);
 
             if (!IsPostBack)
@@ -55,6 +55,9 @@ namespace Lms.LmsWeb.LmsAdmin.Account
 
                     EnrollRepeater.DataSource = user.Enrollments.ToList();
                     EnrollRepeater.DataBind();
+
+                    ManagerRepeater.DataSource = user.UserManagers.ToList();
+                    ManagerRepeater.DataBind();
 
                     CertificateRepeater.DataSource = user.UserCertificates.ToList();
                     CertificateRepeater.DataBind();

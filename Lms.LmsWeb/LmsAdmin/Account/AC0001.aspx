@@ -69,7 +69,7 @@
                                                     <td><%# Eval("Acquisition").ToString() %></td>
                                                     <td><%# Eval("Status") %></td>
                                                     <td style="text-align: right;">
-                                                        <a href='AC0003?id=<%# Eval("Id") %>' class="btn btn-default btn-sm">Details</a>
+                                                        <a href='AC0003?acid=<%# Eval("Id") %>' class="btn btn-default btn-sm">Details</a>
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>

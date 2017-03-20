@@ -20,8 +20,8 @@
 
             <asp:Panel ID="Panel1" runat="server">
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="LessonType">Lesson Type</asp:Label>
-                    <asp:RadioButtonList ID="LessonType" runat="server" CssClass="radio">
+                    <asp:Label runat="server" AssociatedControlID="CurriculumType">Curriculum Type</asp:Label>
+                    <asp:RadioButtonList ID="CurriculumType" runat="server" CssClass="radio" RepeatLayout="Flow" style="margin-top: 0">
                         <asp:ListItem Text="SCORM" Value="0" Selected="True" />
                         <asp:ListItem Text="Quiz" Value="1" />
                         <%--   
@@ -87,7 +87,7 @@
                                         <tr>
                                             <td><%# Eval("Name") %></td>
                                             <td style="text-align: right;">
-                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='selectScorm(<%# "\"" + Eval("Id") + "\"" %>)' /></td>
+                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='<%# "selectScorm(\"" + Eval("Id") + "\")" %>' /></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -127,7 +127,7 @@
                                         <tr>
                                             <td><%# Eval("Title") %></td>
                                             <td style="text-align: right;">
-                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='selectQuiz(<%# "\"" + Eval("Id") + "\"" %>)' /></td>
+                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='<%# "selectQuiz(\"" + Eval("Id") + "\")" %>' /></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -158,7 +158,7 @@
             $("#scormIdValidator").css("display", "none");
             $("#quizIdValidator").css("display", "none"); 
 
-            var lessonType = $('#<%= LessonType.ClientID %>').find(":checked").val();
+            var lessonType = $('#<%= CurriculumType.ClientID %>').find(":checked").val();
             
             if (lessonType == 0 && $("#<%= ScormId.ClientID %>").val() == "") {                
                 $("#scormIdValidator").css("display", "inline-block"); 
@@ -174,7 +174,7 @@
         });
 
         $(document).ready(function () {
-            var checkedType = $('#<%= LessonType.ClientID %> input:checked').val();
+            var checkedType = $('#<%= CurriculumType.ClientID %> input:checked').val();
             $("#scorm-selector").css("display", "none");
             $("#quiz-selector").css("display", "none");
             $("#assignment-selector").css("display", "none");
@@ -189,7 +189,7 @@
 
 
 
-            $('#<%= LessonType.ClientID %> input').change(function () {
+            $('#<%= CurriculumType.ClientID %> input').change(function () {
                 // The one that fires the event is always the
                 // checked one; you don't need to test for this
                 $("#scorm-selector").css("display", "none");

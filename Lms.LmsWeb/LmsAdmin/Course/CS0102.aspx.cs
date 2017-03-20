@@ -50,19 +50,19 @@ namespace Lms.LmsWeb.LmsAdmin.Course
                 if (Panel1.Visible == false)
                 {
                     LessonService.CreateExternalLesson(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId,
-                                LessonName.Text, Description.Text);
+                                CurriculumName.Text, Description.Text);
                 }
                 else
                 {
-                    switch (LessonType.SelectedValue)
+                    switch (CurriculumType.SelectedValue)
                     {
                         case "0":
                             LessonService.CreateScormLesson(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId, ScormId.Value,
-                                LessonName.Text, Description.Text);
+                                CurriculumName.Text, Description.Text);
                             break;
                         case "1":
                             LessonService.CreateQuizLesson(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId, QuizId.Value,
-                                LessonName.Text, Description.Text);
+                                CurriculumName.Text, Description.Text);
                             break;
                         case "2":
                             //CourseService.CreateAssignmentLesson();

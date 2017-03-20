@@ -21,7 +21,7 @@ namespace Lms.LmsWeb.LmsAdmin.Account
             
             if (!IsPostBack)
             {
-                var enrollment = UserService.GetEnrollment(enrollmentId);
+                var enrollment = EnrolService.GetEnrollment(enrollmentId);
 
                 if (enrollment != null)
                 {

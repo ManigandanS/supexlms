@@ -18,9 +18,9 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <asp:Label runat="server" AssociatedControlID="LessonName">Curriculum Name</asp:Label>
-                                    <asp:TextBox ID="LessonName" runat="server" PlaceHolder="LessonName" CssClass="form-control" AutoCompleteType="None"></asp:TextBox>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="LessonName" ErrorMessage="Required" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
+                                    <asp:Label runat="server" AssociatedControlID="CurriculumName">Curriculum Name</asp:Label>
+                                    <asp:TextBox ID="CurriculumName" runat="server" PlaceHolder="Curriculum Name" CssClass="form-control" AutoCompleteType="None"></asp:TextBox>
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="CurriculumName" ErrorMessage="Required" Display="Dynamic" CssClass="text-danger"></asp:RequiredFieldValidator>
                                 </div>
 
                                 <div class="form-group">
@@ -30,8 +30,8 @@
 
                                 <asp:Panel ID="Panel1" runat="server">
                                     <div class="form-group">
-                                        <asp:Label runat="server" AssociatedControlID="LessonType">Lesson Type</asp:Label>
-                                        <asp:RadioButtonList ID="LessonType" runat="server" CssClass="radio">
+                                        <asp:Label runat="server" AssociatedControlID="CurriculumType">Curriculum Type</asp:Label>
+                                        <asp:RadioButtonList ID="CurriculumType" runat="server" CssClass="radio" RepeatLayout="Flow" style="margin-top: 0;">
                                             <asp:ListItem Text="SCORM" Value="0" Selected="True" />
                                             <asp:ListItem Text="Quiz" Value="1" />
                                             <%--   
@@ -41,7 +41,7 @@
                                     </div>
 
                                     <div class="form-group" id="scorm-selector">
-                                        <asp:Label runat="server" AssociatedControlID="ScormId">Published Content</asp:Label>
+                                        <asp:Label runat="server" AssociatedControlID="ScormId">Select Content</asp:Label>
                                         <asp:HiddenField ID="ScormId" runat="server" />
                                         <div>
                                             <span class="text-danger" style="display: none;" id="scormIdValidator">Required</span>
@@ -52,7 +52,7 @@
                                     </div>
 
                                     <div class="form-group" id="quiz-selector" style="display: none;">
-                                        <asp:Label runat="server" AssociatedControlID="QuizId">Published Quiz</asp:Label>
+                                        <asp:Label runat="server" AssociatedControlID="QuizId">Select Quiz</asp:Label>
                                         <asp:HiddenField ID="QuizId" runat="server" />
                                         <div>
                                             <span class="text-danger" style="display: none;" id="quizIdValidator">Required</span>
@@ -104,7 +104,7 @@
                                         <tr>
                                             <td><%# Eval("Name") %></td>
                                             <td style="text-align: right;">
-                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='selectScorm(<%# "\"" + Eval("Id") + "\"" %>)' /></td>
+                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='<%# "selectScorm(\"" + Eval("Id") + "\")" %>' /></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -144,7 +144,7 @@
                                         <tr>
                                             <td><%# Eval("Title") %></td>
                                             <td style="text-align: right;">
-                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='selectQuiz(<%# "\"" + Eval("Id") + "\"" %>)' /></td>
+                                                <input type="button" class="btn btn-primary btn-sm" value="Select" onclick='<%# "selectQuiz(\"" + Eval("Id") + "\")" %>' /></td>
                                         </tr>
                                     </ItemTemplate>
                                 </asp:Repeater>
@@ -175,7 +175,7 @@
             $("#scormIdValidator").css("display", "none");
             $("#quizIdValidator").css("display", "none"); 
 
-            var lessonType = $('#<%= LessonType.ClientID %>').find(":checked").val();
+            var lessonType = $('#<%= CurriculumType.ClientID %>').find(":checked").val();
             
             if (lessonType == 0 && $("#<%= ScormId.ClientID %>").val() == "") {                
                 $("#scormIdValidator").css("display", "inline-block"); 
@@ -191,7 +191,7 @@
         });
 
         $(document).ready(function () {
-            $('#<%= LessonType.ClientID %> input').change(function () {
+            $('#<%= CurriculumType.ClientID %> input').change(function () {
                 // The one that fires the event is always the
                 // checked one; you don't need to test for this
                 $("#scorm-selector").css("display", "none");

@@ -83,6 +83,14 @@
     <Compile Include="Migrations\201703192135317_Initial.Designer.cs">
       <DependentUpon>201703192135317_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703200249010_Manager.cs" />
+    <Compile Include="Migrations\201703200249010_Manager.Designer.cs">
+      <DependentUpon>201703200249010_Manager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201703200250539_Manager-NotNull.cs" />
+    <Compile Include="Migrations\201703200250539_Manager-NotNull.Designer.cs">
+      <DependentUpon>201703200250539_Manager-NotNull.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Certificates\Certificate.cs" />
     <Compile Include="Models\Commons\Configuration.cs" />
@@ -102,6 +110,9 @@
     <Compile Include="Models\Emails\EnrollmentEmailQueueFactory.cs" />
     <Compile Include="Models\Emails\WelcomeEmailQueueFactory.cs" />
     <Compile Include="Models\Emails\WithdrawlEmailQueueFactory.cs" />
+    <Compile Include="Models\Users\UserManager.cs" />
+    <Compile Include="Services\Enrolments\EnrolServiceImpl.cs" />
+    <Compile Include="Services\Enrolments\IEnrolService.cs" />
     <Compile Include="Models\Exceptions\PaymentException.cs" />
     <Compile Include="Models\Quizzes\Quiz.cs" />
     <Compile Include="Models\Quizzes\QuizAnswer.cs" />
@@ -172,6 +183,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201703192135317_Initial.resx">
       <DependentUpon>201703192135317_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703200249010_Manager.resx">
+      <DependentUpon>201703200249010_Manager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703200250539_Manager-NotNull.resx">
+      <DependentUpon>201703200250539_Manager-NotNull.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

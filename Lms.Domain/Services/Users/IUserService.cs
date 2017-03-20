@@ -15,7 +15,9 @@ namespace Lms.Domain.Services.Users
         void RegisterTemporaryUser(string companyId, string updaterId, string email, string password,
             string firstName, string lastName, UserTypeEnum userType, List<string> groups, List<string> roles);
 
-        
+        void AddManager(string companyId, string userId, string managerId);
+
+        void RemoveManager(string companyId, string userId, string managerId);
 
         IEnumerable<User> LoadAllUsers(string companyId);
 
@@ -23,13 +25,9 @@ namespace Lms.Domain.Services.Users
 
         IEnumerable<User> LoadInactiveUsers(string companyId);
 
-        IEnumerable<User> LoadRegisteredUsers(string companyId);
-
-        IEnumerable<Enrollment> LoadActiveEnrollments(string userId);
+        IEnumerable<User> LoadRegisteredUsers(string companyId);        
 
         IEnumerable<Role> LoadActiveRolls(string companyId);
-
-        Enrollment GetEnrollment(string enrollmentId);
 
         User GetUserById(string companyId, string userId);
 
@@ -39,8 +37,8 @@ namespace Lms.Domain.Services.Users
 
         void DeleteRole(string companyId, string updaterId, string roleId);
 
-        IEnumerable<Enrollment> LoadFinishedCourses(string userId);
-
         IEnumerable<UserCertificate> LoadUserCertificates(string userId);
+
+        IEnumerable<User> FindManagersByName(string companyId, string userId, string name);
     }
 }

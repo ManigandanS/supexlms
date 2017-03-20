@@ -22,7 +22,7 @@ namespace Lms.LmsWeb.Course
             
             if (!IsPostBack)
             {
-                var enrollment = UserService.GetEnrollment(enrollmentId);
+                var enrollment = EnrolService.GetEnrollment(enrollmentId);
 
                 if (enrollment != null)
                 {

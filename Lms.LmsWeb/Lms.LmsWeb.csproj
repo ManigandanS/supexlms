@@ -173,11 +173,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="LmsAdmin\Account\AC0005.aspx" />
     <Content Include="Pages\Account\ChangePassword.aspx" />
     <Content Include="Pages\Account\Adfs.aspx" />
     <Content Include="Pages\Account\Azure.aspx" />
     <Content Include="Content\bootstrap-datepiacker3.min.css" />
     <Content Include="Content\custom.css" />
+    <Content Include="Pages\Catalogue\Request.aspx" />
     <Content Include="Pages\Course\CourseApi.svc" />
     <Content Include="Pages\Course\QuizLesson.aspx" />
     <Content Include="Pages\Transcript\Index.aspx" />
@@ -4581,6 +4583,13 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LmsAdmin\Account\AC0005.aspx.cs">
+      <DependentUpon>AC0005.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LmsAdmin\Account\AC0005.aspx.designer.cs">
+      <DependentUpon>AC0005.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4601,6 +4610,13 @@
     </Compile>
     <Compile Include="Pages\Account\Azure.aspx.designer.cs">
       <DependentUpon>Azure.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Catalogue\Request.aspx.cs">
+      <DependentUpon>Request.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Catalogue\Request.aspx.designer.cs">
+      <DependentUpon>Request.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Course\CourseApi.svc.cs">
       <DependentUpon>CourseApi.svc</DependentUpon>

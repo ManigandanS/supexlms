@@ -67,13 +67,12 @@ namespace Lms.Domain.Services.Courses
             }
         }
 
-        public IEnumerable<Session> LoadNewSessions(string companyId, string userId)
+        public IEnumerable<Session> LoadNewSessions(string companyId, UserTypeEnum userType)
         {
-            var user = unitOfWork.UserRepository.GetById(userId);
             var courses = unitOfWork.CourseRepository.GetAll().Where(x => x.CompanyId == companyId && !x.IsDeleted)
                 .Include(x => x.Sessions);
-            
-            if (user.UserType == Models.Users.UserTypeEnum.External)
+
+            if (userType == Models.Users.UserTypeEnum.External)
             {
                 courses = courses.Where(x => x.CourseAccess == CourseAccessEnum.ExtenralUsersOnly || x.CourseAccess == CourseAccessEnum.BothUsers);
             }
@@ -123,19 +122,45 @@ namespace Lms.Domain.Services.Courses
             }
         }
 
-        public void DeleteSession(string companyId, string updaterId, string courseId, string sessionId)
+        public void EditSession(string companyId, string sessionId, string sessionName, string description, string cost,
+            string sessionStartDate, string sessionEndDate, string enrollmentStartDate, string enrollmentEndDate)
         {
-            logger.Info("[user: {0}] deletes a session [courseId: {1}, sessionId: {2}]", updaterId, courseId, sessionId);
-            var course = unitOfWork.CourseRepository.GetById(courseId);
-            if (course.Company.Id == companyId)
+            Session session = unitOfWork.SessionRepository.GetById(sessionId);
+            if (session.Course.CompanyId == companyId)
             {
-                var session = course.Sessions.SingleOrDefault(x => x.Id == sessionId);
+                var sessionStart = DateTime.Parse(sessionStartDate);
+                var sessionEnd = DateTime.Parse(sessionEndDate);
+                var enrollmentStart = DateTime.Parse(enrollmentStartDate);
+                var enrollmentEnd = DateTime.Parse(enrollmentEndDate);
+                double? doubleCost = null;
+                if (!string.IsNullOrEmpty(cost))
+                    doubleCost = double.Parse(cost);
+
+                session.Name = sessionName;
+                session.Description = description;
+                session.Cost = doubleCost;
+                session.SessionStart = sessionStart;
+                session.SessionEnd = sessionEnd;
+                session.EnrollStart = enrollmentStart;
+                session.EnrollEnd = enrollmentEnd;
+
+                unitOfWork.SessionRepository.Update(session);
+                unitOfWork.SaveChanges();
+            }
+        }
+
+        public void DeleteSession(string companyId, string updaterId, string sessionId)
+        {
+            logger.Info("[user: {0}] deletes a session [sessionId: {1}]", updaterId, sessionId);
+            var session = unitOfWork.SessionRepository.GetById(sessionId);
+            if (session.Course.Company.Id == companyId)
+            {
                 if (session != null)
                 {
                     session.IsDeleted = true;
                     session.UpdatedTs = DateTime.UtcNow;
 
-                    unitOfWork.CourseRepository.Update(course);
+                    unitOfWork.SessionRepository.Update(session);
                     unitOfWork.SaveChanges();
                 }
             }

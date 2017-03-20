@@ -1,4 +1,5 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/LmsAdmin/Admin.Master" AutoEventWireup="true" CodeBehind="CS0201.aspx.cs" Inherits="Lms.LmsWeb.LmsAdmin.Course.CS0201" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/LmsAdmin/Admin.Master" AutoEventWireup="true" CodeBehind="AC0005.aspx.cs" Inherits="Lms.LmsWeb.LmsAdmin.Account.AC0005" %>
+<%@ Register Src="~/UserControls/CommonSearch.ascx" TagName="SearchControl" TagPrefix="lms" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
@@ -6,26 +7,21 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Manage Sessions</h2>
+                    <h2>Add Manager</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
+                    <lms:SearchControl ID="SearchControl1" runat="server"></lms:SearchControl>
 
-                    <!-- session management -->
                     <div class="row">
                         <div class="col-xs-12">
-                            <div>
-                                <a class="btn btn-primary btn-sm" href="CS0202?csid=<%= courseId %>">Create New</a>
-                            </div>
+
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
-                                            <th>Session Start Date</th>
-                                            <th>Session End Date</th>
-                                            <th>Enroll Start Date</th>
-                                            <th>Enroll End Date</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -33,13 +29,10 @@
                                         <asp:Repeater ID="Repeater1" runat="server">
                                             <ItemTemplate>
                                                 <tr>
-                                                    <td><%# Eval("Name") %></td>
-                                                    <td><%# Eval("SessionStart") %></td>
-                                                    <td><%# Eval("SessionEnd") %></td>
-                                                    <td><%# Eval("EnrollStart") %></td>
-                                                    <td><%# Eval("EnrollEnd") %></td>
+                                                    <td><%# Eval("DecryptedFirstName") %></td>
+                                                    <td><%# Eval("DecryptedLastName") %></td>
                                                     <td style="text-align: right;">
-                                                        <a href='CS0203?ssid=<%# Eval("Id") %>' class="btn btn-default btn-sm">Details</a>
+                                                        <asp:Button ID="AddBtn" runat="server" Text="Add" CssClass="btn btn-primary btn-sm" OnCommand="AddBtn_Command" CommandArgument='<%# Eval("Id") %>' />
                                                     </td>
                                                 </tr>
                                             </ItemTemplate>
@@ -47,6 +40,7 @@
                                     </tbody>
                                 </table>
                             </div>
+
                         </div>
                     </div>
                 </div>

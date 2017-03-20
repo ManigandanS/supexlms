@@ -22,13 +22,13 @@ namespace Lms.LmsWeb.LmsAdmin.Course {
         protected global::System.Web.UI.WebControls.CustomValidator CustomValidator1;
         
         /// <summary>
-        /// LessonName control.
+        /// CurriculumName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox LessonName;
+        protected global::System.Web.UI.WebControls.TextBox CurriculumName;
         
         /// <summary>
         /// Description control.
@@ -49,13 +49,13 @@ namespace Lms.LmsWeb.LmsAdmin.Course {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// LessonType control.
+        /// CurriculumType control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList LessonType;
+        protected global::System.Web.UI.WebControls.RadioButtonList CurriculumType;
         
         /// <summary>
         /// ScormId control.

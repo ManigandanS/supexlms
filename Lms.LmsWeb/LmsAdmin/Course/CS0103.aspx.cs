@@ -41,7 +41,7 @@ namespace Lms.LmsWeb.LmsAdmin.Course
                     }
                     else
                     {
-                        LessonType.SelectedValue = ((int)lesson.LessonType).ToString();
+                        CurriculumType.SelectedValue = ((int)lesson.LessonType).ToString();
                         ScormId.Value = lesson.ScormId;
                         QuizId.Value = lesson.QuizId;
                     }
@@ -63,7 +63,7 @@ namespace Lms.LmsWeb.LmsAdmin.Course
                 }
                 else
                 {
-                    switch (LessonType.SelectedValue)
+                    switch (CurriculumType.SelectedValue)
                     {
                         case "0":
                             LessonService.EditScormLesson(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, courseId, lessonId, ScormId.Value,
