@@ -111,6 +111,8 @@
     <Compile Include="Models\Emails\WelcomeEmailQueueFactory.cs" />
     <Compile Include="Models\Emails\WithdrawlEmailQueueFactory.cs" />
     <Compile Include="Models\Users\UserManager.cs" />
+    <Compile Include="Models\Workflows\Workflow.cs" />
+    <Compile Include="Models\Workflows\WorkflowStep.cs" />
     <Compile Include="Services\Enrolments\EnrolServiceImpl.cs" />
     <Compile Include="Services\Enrolments\IEnrolService.cs" />
     <Compile Include="Models\Exceptions\PaymentException.cs" />
@@ -175,6 +177,8 @@
     <Compile Include="Services\Auths\IAuthService.cs" />
     <Compile Include="Services\Users\IUserService.cs" />
     <Compile Include="Services\Users\UserServiceImpl.cs" />
+    <Compile Include="Services\Workflows\IWorkflowService.cs" />
+    <Compile Include="Services\Workflows\WorkflowServiceImpl.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -10,16 +10,22 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <div><h2><asp:Literal ID="CourseName" runat="server"></asp:Literal></h2></div>
-                    <div><asp:Literal ID="CourseDesc" runat="server"></asp:Literal></div>
+                    <div>
+                        <h2>
+                            <asp:Literal ID="CourseName" runat="server"></asp:Literal></h2>
+                    </div>
+                    <div>
+                        <asp:Literal ID="CourseDesc" runat="server"></asp:Literal></div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <div class="row">
         <div class="col-md-12">
-            <div class="x_panel">
+            <asp:Panel ID="Panel1" runat="server" class="x_panel">
+
                 <div class="x_title">
                     <h2>Curriculum</h2>
                     <div class="clearfix"></div>
@@ -51,7 +57,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </asp:Panel>
 
 
             <div class="x_panel">

@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Lms.Domain.Models.Workflows;
 
 namespace Lms.Domain.Models.Companies
 {
@@ -19,6 +20,17 @@ namespace Lms.Domain.Models.Companies
         public Company()
         {
             this.Id = Guid.NewGuid().ToString();
+            this.Organizations = new HashSet<Organization>();
+            this.CompanyAccesses = new HashSet<CompanyAccess>();
+            this.Groups = new HashSet<Group>();
+            this.Certificates = new HashSet<Certificate>();
+            this.Scorms = new HashSet<Scorm>();
+            this.Courses = new HashSet<Course>();
+            this.Quizzes = new HashSet<Quiz>();
+            this.Roles = new HashSet<Role>();
+            this.Notifications = new HashSet<Notification>();
+            this.CompanyConfigurations = new HashSet<CompanyConfiguration>();
+            this.Workflows = new HashSet<Workflow>();
         }
 
         public Notification AddNotification(string companyId, string updaterId, string title, string details, DateTime startDate, DateTime endDate)
@@ -32,7 +44,7 @@ namespace Lms.Domain.Models.Companies
             return notification;
         }
 
-        
+
 
         public void AddRole(string name, string description)
         {
@@ -59,7 +71,7 @@ namespace Lms.Domain.Models.Companies
         {
             if (this.Quizzes == null)
                 this.Quizzes = new List<Quiz>();
-            
+
             this.Quizzes.Add(quiz);
         }
 
@@ -128,5 +140,6 @@ namespace Lms.Domain.Models.Companies
         public virtual ICollection<Role> Roles { get; set; }
         public virtual ICollection<Notification> Notifications { get; set; }
         public virtual ICollection<CompanyConfiguration> CompanyConfigurations { get; set; }
+        public virtual ICollection<Workflow> Workflows { get; set; }
     }
 }

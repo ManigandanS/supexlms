@@ -18,31 +18,30 @@ namespace Lms.LmsWeb.Catalogue
         {
             string sessionId = Request.QueryString["ssid"];
             session = SessionService.GetSessionById(SessionVariable.Current.Company.Id, sessionId);
+            if (session != null)
+                CostText.Text = session.Cost.ToString();
+            else
+                PayBtn.Visible = false;
+
 
             if (!IsPostBack)
-            {   
-                if (session != null)
+            {
+                List<string> months = new List<string>();
+                List<string> years = new List<string>();
+
+                for (int i = 1; i <= 12; i++)
                 {
-                    CostText.Text = session.Cost.ToString();
-                    List<string> months = new List<string>();
-                    List<string> years = new List<string>();
-
-                    for (int i = 1; i <= 12; i++)
-                    {
-                        months.Add(i.ToString("D2"));
-                    }
-                    ExpireMonth.DataSource = months;
-                    ExpireMonth.DataBind();
-
-                    for (int i = 0; i < 6; i++)
-                    {
-                        years.Add(DateTime.UtcNow.AddYears(i).Year.ToString());
-                    }
-                    ExpireYear.DataSource = years;
-                    ExpireYear.DataBind();
+                    months.Add(i.ToString("D2"));
                 }
-                else
-                    PayBtn.Visible = false;
+                ExpireMonth.DataSource = months;
+                ExpireMonth.DataBind();
+
+                for (int i = 0; i < 6; i++)
+                {
+                    years.Add(DateTime.UtcNow.AddYears(i).Year.ToString());
+                }
+                ExpireYear.DataSource = years;
+                ExpireYear.DataBind();
             }
         }
 

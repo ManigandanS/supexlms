@@ -84,21 +84,28 @@
         }
 
         $(document).ready(function () {
+
+            if ($('#<%= CourseTypeRadioButtonList.ClientID %> input:checked').val() == 1) {
+                $("#<%= CourseAccessDropDownList.ClientID %>").empty();
+                $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
+            }
+
+
             $('#<%= CourseTypeRadioButtonList.ClientID %> input').change(function () {
                 // The one that fires the event is always the
                 // checked one; you don't need to test for this
 
                 
-                //$("#<%= CourseAccessDropDownList.ClientID %>").empty();
+                $("#<%= CourseAccessDropDownList.ClientID %>").empty();
 
                 if ($(this).val() == 0) {
-                    $("#div-certificate").css("display", "block");
-                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
-                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='1'>External Users Only</option>");
-                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='2'>Both Users</option>");
+                    //$("#div-certificate").css("display", "block");
+                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
+                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='1'>External Users Only</option>");
+                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='2'>Both Users</option>");
                 } else {
-                    $("#div-certificate").css("display", "none");
-                //    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
+                    //$("#div-certificate").css("display", "none");
+                    $("#<%= CourseAccessDropDownList.ClientID %>").append("<option value='0' selected='selected'>Internal Users Only</option>");
                 }
             });
         });

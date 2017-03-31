@@ -29,8 +29,13 @@ namespace Lms.LmsWeb.Catalogue
                     CourseName.Text = course.Name;
                     CourseDesc.Text = course.Description;
 
-                    LessonRepeater.DataSource = course.LoadActiveLessons();
-                    LessonRepeater.DataBind();
+                    if (course.CourseType == CourseTypeEnum.Intenral)
+                    {
+                        LessonRepeater.DataSource = course.LoadActiveLessons();
+                        LessonRepeater.DataBind();
+                    }
+                    else
+                        Panel1.Visible = false;
 
                     SessionRepeater.DataSource = course.LoadActiveSessions();
                     SessionRepeater.DataBind();

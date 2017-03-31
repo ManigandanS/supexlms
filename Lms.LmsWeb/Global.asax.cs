@@ -39,7 +39,7 @@ namespace Lms.LmsWeb
                     return;
 
                 //Redirect HTTP errors to HttpError page
-                Server.Transfer("~/Error");
+                Server.Transfer("/Error");
             }
 
             // For other kinds of errors give the user some information
@@ -47,7 +47,7 @@ namespace Lms.LmsWeb
             Response.Write("<h2>Global Page Error</h2>\n");
             Response.Write(
                 "<p>" + exc.Message + "</p>\n");
-            Response.Write("Return to the <a href='Default.aspx'>" +
+            Response.Write("Return to the <a href='/Default.aspx'>" +
                 "Default Page</a>\n");
 
             logger.Error(exc.ToString());
