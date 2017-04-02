@@ -91,6 +91,10 @@
     <Compile Include="Migrations\201703200250539_Manager-NotNull.Designer.cs">
       <DependentUpon>201703200250539_Manager-NotNull.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704021725257_Workflow.cs" />
+    <Compile Include="Migrations\201704021725257_Workflow.Designer.cs">
+      <DependentUpon>201704021725257_Workflow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Certificates\Certificate.cs" />
     <Compile Include="Models\Commons\Configuration.cs" />
@@ -111,6 +115,9 @@
     <Compile Include="Models\Emails\WelcomeEmailQueueFactory.cs" />
     <Compile Include="Models\Emails\WithdrawlEmailQueueFactory.cs" />
     <Compile Include="Models\Users\UserManager.cs" />
+    <Compile Include="Models\Workflows\ICreateWorkflowStep.cs" />
+    <Compile Include="Models\Workflows\ManagerWorkflowStep.cs" />
+    <Compile Include="Models\Workflows\SessionWorkflow.cs" />
     <Compile Include="Models\Workflows\Workflow.cs" />
     <Compile Include="Models\Workflows\WorkflowStep.cs" />
     <Compile Include="Services\Enrolments\EnrolServiceImpl.cs" />
@@ -193,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703200250539_Manager-NotNull.resx">
       <DependentUpon>201703200250539_Manager-NotNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704021725257_Workflow.resx">
+      <DependentUpon>201704021725257_Workflow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

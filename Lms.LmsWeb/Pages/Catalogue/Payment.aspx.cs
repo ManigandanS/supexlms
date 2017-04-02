@@ -13,19 +13,22 @@ namespace Lms.LmsWeb.Catalogue
     public partial class Payment : SecurePage
     {
         protected Lms.Domain.Models.Courses.Session session;
+        string sessionId, courseId;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string sessionId = Request.QueryString["ssid"];
-            session = SessionService.GetSessionById(SessionVariable.Current.Company.Id, sessionId);
-            if (session != null)
-                CostText.Text = session.Cost.ToString();
-            else
-                PayBtn.Visible = false;
+            sessionId = Request.QueryString["ssid"];
+            courseId = Request.QueryString["csid"];
 
 
             if (!IsPostBack)
             {
+                session = SessionService.GetSessionById(SessionVariable.Current.Company.Id, sessionId);
+                if (session != null)
+                    CostText.Text = session.Cost.ToString();
+                else
+                    PayBtn.Visible = false;
+
                 List<string> months = new List<string>();
                 List<string> years = new List<string>();
 
@@ -49,7 +52,7 @@ namespace Lms.LmsWeb.Catalogue
         {
             try
             {
-                SessionService.ChargeSession(SessionVariable.Current.User.Id, session.Id, CardNumber.Text, ExpireYear.SelectedValue, ExpireMonth.SelectedValue, Cvv2.Text);
+                EnrolService.ChargeSession(SessionVariable.Current.User.Id, session.Id, CardNumber.Text, ExpireYear.SelectedValue, ExpireMonth.SelectedValue, Cvv2.Text);
             }
             catch (PaymentException pex)
             {
@@ -59,7 +62,7 @@ namespace Lms.LmsWeb.Catalogue
                 return;
             }
 
-            Response.Redirect("CourseDetails?id=" + session.CourseId);
+            Response.Redirect("CourseDetails?csid=" + courseId);
         }
     }
 }

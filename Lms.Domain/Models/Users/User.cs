@@ -2,6 +2,7 @@
 using Lms.Domain.Models.Companies;
 using Lms.Domain.Models.Quizzes;
 using Lms.Domain.Models.Utils;
+using Lms.Domain.Models.Workflows;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -194,5 +195,9 @@ namespace Lms.Domain.Models.Users
 
         [InverseProperty("User")]
         public virtual ICollection<UserManager> UserManagers { get; set; }
+        [InverseProperty("User")]
+        public virtual ICollection<WorkflowStep> UserWorkflowStep { get; set; }
+        [InverseProperty("Approver")]
+        public virtual ICollection<WorkflowStep> ApproverWorkflowStep { get; set; }
     }
 }

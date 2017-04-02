@@ -90,15 +90,15 @@ namespace Lms.LmsWeb.Catalogue
                 var session = SessionService.GetSessionById(SessionVariable.Current.Company.Id, sessionId);
 
                 if (session.Course.CourseType == CourseTypeEnum.External)
-                    Response.Redirect("Request?ssid=" + sessionId);
+                    Response.Redirect("Request?ssid=" + sessionId + "&csid=" + courseId);
                 
 
                 if (session.Cost != null & session.Cost > 0)
                 {
-                    Response.Redirect("Payment?ssid=" + sessionId);
+                    Response.Redirect("Payment?ssid=" + sessionId + "&csid=" + courseId);
                 }
                 else
-                    SessionService.EnrollUser(SessionVariable.Current.User.Id, sessionId);
+                    EnrolService.EnrollUser(SessionVariable.Current.User.Id, sessionId);
             }
             catch (Exception ex)
             {

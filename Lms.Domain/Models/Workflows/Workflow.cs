@@ -1,4 +1,5 @@
 ﻿using Lms.Domain.Models.Companies;
+using Lms.Domain.Models.Users;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,7 +12,22 @@ namespace Lms.Domain.Models.Workflows
 {
     public enum WorkflowTypeEnum
     {
+        ExternalCourseTake,
+        InternalCourseTake,
+    }
 
+    public enum WorkflowStatusEnum
+    {
+        Requested,
+        Withdrawn,
+        Completed
+    }
+
+    public enum WorkflowProcessStatusEnum
+    {
+        Pending,
+        Approved,
+        Declined
     }
 
     public class Workflow
@@ -20,6 +36,18 @@ namespace Lms.Domain.Models.Workflows
         {
             this.Id = Guid.NewGuid().ToString();
             this.WorkflowSteps = new HashSet<WorkflowStep>();
+        }
+
+        public Workflow(string companyId, string requestorId, string comment, WorkflowTypeEnum type) : this()
+        {
+            this.CompanyId = companyId;
+            this.WorkflowType = type;
+            this.WorkflowStatus = WorkflowStatusEnum.Requested;
+            this.WorkflowProcessStatus = WorkflowProcessStatusEnum.Pending;
+            this.RequestorId = requestorId;
+            this.RequestTs = DateTime.UtcNow;
+            this.NextStep = 1;
+            this.Comment = comment;
         }
 
         [Key]
@@ -31,7 +59,26 @@ namespace Lms.Domain.Models.Workflows
         [StringLength(128)]
         public string CompanyId { get; set; }
 
+        public WorkflowTypeEnum WorkflowType { get; set; }
+
+        public WorkflowStatusEnum WorkflowStatus { get; set; }
+
+        public WorkflowProcessStatusEnum WorkflowProcessStatus { get; set; }
+
+        [Required]
+        [StringLength(128)]
+        public string RequestorId { get; set; }
+
+        public string Comment { get; set; }
+
+        public int? NextStep { get; set; }
+
+        public DateTime RequestTs { get; set; }
+
+        public DateTime? CompleteTs { get; set; }
+
         public virtual Company Company { get; set; }
         public virtual ICollection<WorkflowStep> WorkflowSteps { get; set; }
+        public virtual User Requestor { get; set; }
     }
 }

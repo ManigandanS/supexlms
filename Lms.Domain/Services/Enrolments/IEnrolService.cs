@@ -9,6 +9,10 @@ namespace Lms.Domain.Services.Enrolments
 {
     public interface IEnrolService
     {
+        void EnrollUser(string userId, string sessionId);
+
+        void ChargeSession(string userId, string sessionId, string cardNumber, string expireYear, string expireMonth, string cvv2);
+
         IEnumerable<Enrollment> LoadFinishedCourses(string userId);
 
         Enrollment GetEnrollment(string enrollmentId);

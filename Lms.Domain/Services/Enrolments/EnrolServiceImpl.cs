@@ -1,4 +1,6 @@
-﻿using Lms.Domain.Models.Users;
+﻿using Lms.Domain.Gateways.Payments;
+using Lms.Domain.Models.Exceptions;
+using Lms.Domain.Models.Users;
 using Lms.Domain.Repositories;
 using NLog;
 using System;
@@ -12,11 +14,42 @@ namespace Lms.Domain.Services.Enrolments
     public class EnrolServiceImpl : IEnrolService
     {
         protected IUnitOfWork unitOfWork;
+        protected IPaymentService paymentService;
         static Logger logger = LogManager.GetCurrentClassLogger();
 
-        public EnrolServiceImpl(IUnitOfWork unitOfWork)
+        public EnrolServiceImpl(IUnitOfWork unitOfWork, IPaymentService paymentService)
         {
             this.unitOfWork = unitOfWork;
+            this.paymentService = paymentService;
+        }
+
+        public void EnrollUser(string userId, string sessionId)
+        {
+            //var lessons = unitOfWork.SessionRepository.GetById(sessionId).Course.Lessons.Where(x => !x.IsDeleted).ToList();
+            var enrollment = new Enrollment(userId, sessionId);
+            unitOfWork.EnrollmentRepository.Insert(enrollment);
+            unitOfWork.SaveChanges();
+        }
+
+        public void ChargeSession(string userId, string sessionId, string cardNumber, string expireYear, string expireMonth, string cvv2)
+        {
+            var session = unitOfWork.SessionRepository.GetById(sessionId);
+            if (session.Cost != null && session.Cost > 0)
+            {
+                try
+                {
+                    paymentService.Charge((int)(session.Cost.Value * 100), "usd", "", cardNumber, expireYear, expireMonth, cvv2);
+
+                    EnrollUser(userId, sessionId);
+
+                }
+                catch (PaymentException pex)
+                {
+                    logger.Error(pex.ToString());
+                    throw pex;
+                }
+
+            }
         }
 
         public IEnumerable<Enrollment> LoadFinishedCourses(string userId)

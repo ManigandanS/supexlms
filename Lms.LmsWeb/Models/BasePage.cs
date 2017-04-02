@@ -19,6 +19,7 @@ using Lms.Domain.Services.Plans;
 using Lms.Domain.Services.Auths;
 using Lms.Domain.Services.Configs;
 using Lms.Domain.Services.Enrolments;
+using Lms.Domain.Services.Workflows;
 
 namespace Lms.LmsWeb.Models
 {
@@ -58,6 +59,8 @@ namespace Lms.LmsWeb.Models
         public IConfigService ConfigService { get; set; }
         [Inject]
         public IEnrolService EnrolService { get; set; }
+        [Inject]
+        public IWorkflowService WorkflowService { get; set; }
 
 
         private readonly static Logger logger = LogManager.GetCurrentClassLogger();

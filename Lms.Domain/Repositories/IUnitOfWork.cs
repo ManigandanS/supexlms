@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lms.Domain.Models.Certificates;
+using Lms.Domain.Models.Workflows;
 
 namespace Lms.Domain.Repositories
 {
@@ -29,6 +30,7 @@ namespace Lms.Domain.Repositories
         IDbRepository<Enrollment> EnrollmentRepository { get; }
         IDbRepository<Session> SessionRepository { get; }
         IDbRepository<Certificate> CertificateRepository { get; }
+        IDbRepository<Workflow> WorkflowRepository { get; }
 
         int SqlCommand(string sql, params object[] parameters);
         void SaveChanges();

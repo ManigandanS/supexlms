@@ -1,4 +1,5 @@
 ﻿using Lms.Domain.Models.Users;
+using Lms.Domain.Models.Workflows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -80,5 +81,6 @@ namespace Lms.Domain.Models.Courses
 
         public virtual Course Course { get; set; }
         public virtual ICollection<Enrollment> Enrollments { get; set; }
+        public virtual ICollection<SessionWorkflow> SessionWorkflows { get; set; }
     }
 }

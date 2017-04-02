@@ -14,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Lms.Domain.Models.Certificates;
+using Lms.Domain.Models.Workflows;
 
 namespace Lms.Infrastructure.Repositories
 {
@@ -30,6 +31,11 @@ namespace Lms.Infrastructure.Repositories
         public UnitOfWork(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
+        }
+
+        public IDbRepository<Workflow> WorkflowRepository
+        {
+            get { return Repository<Workflow>(); }
         }
 
         public IDbRepository<Certificate> CertificateRepository

@@ -25,34 +25,9 @@ namespace Lms.Domain.Services.Courses
             this.paymentService = paymentService;
         }
 
-        public void ChargeSession(string userId, string sessionId, string cardNumber, string expireYear, string expireMonth, string cvv2)
-        {
-            var session = unitOfWork.SessionRepository.GetById(sessionId);
-            if (session.Cost != null && session.Cost > 0)
-            {
-                try
-                {
-                    paymentService.Charge((int)(session.Cost.Value * 100), "usd", "", cardNumber, expireYear, expireMonth, cvv2);
+        
 
-                    EnrollUser(userId, sessionId);
-                    
-                }
-                catch (PaymentException pex)
-                {
-                    logger.Error(pex.ToString());
-                    throw pex;
-                }
-
-            }
-        }
-
-        public void EnrollUser(string userId, string sessionId)
-        {
-            //var lessons = unitOfWork.SessionRepository.GetById(sessionId).Course.Lessons.Where(x => !x.IsDeleted).ToList();
-            var enrollment = new Enrollment(userId, sessionId);
-            unitOfWork.EnrollmentRepository.Insert(enrollment);
-            unitOfWork.SaveChanges();
-        }
+        
 
 
         public void WithdrawEnrollment(string enrollmentId, string userId)

@@ -22,10 +22,8 @@ namespace Lms.Domain.Services.Courses
 
         IEnumerable<Session> LoadNewSessions(string companyId, UserTypeEnum userType);
 
-        void EnrollUser(string userId, string sessionId);
-
         void WithdrawEnrollment(string enrollmentId, string userId);
 
-        void ChargeSession(string userId, string sessionId, string cardNumber, string expireYear, string expireMonth, string cvv2);
+        
     }
 }

@@ -1,4 +1,6 @@
-﻿using Lms.LmsWeb.Models;
+﻿using Lms.Domain.Models.Workflows;
+using Lms.LmsWeb.Models;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +12,13 @@ namespace Lms.LmsWeb.Pages.Catalogue
 {
     public partial class Request : SecurePage
     {
-        string sessionId;
+        string sessionId, courseId;
+        static Logger logger = LogManager.GetCurrentClassLogger();
 
         protected void Page_Load(object sender, EventArgs e)
         {
             sessionId = Request.QueryString["ssid"];
+            courseId = Request.QueryString["csid"];
 
             if (!IsPostBack)
             {
@@ -41,7 +45,31 @@ namespace Lms.LmsWeb.Pages.Catalogue
 
         protected void RequestBtn_Click(object sender, EventArgs e)
         {
+            try
+            {
+                WorkflowService.RequestApproval(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, Comment.Text, WorkflowTypeEnum.ExternalCourseTake, sessionId);
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+            {
+                Exception raise = dbEx;
+                foreach (var validationErrors in dbEx.EntityValidationErrors)
+                {
+                    foreach (var validationError in validationErrors.ValidationErrors)
+                    {
+                        string message = string.Format("{0}:{1}", validationErrors.Entry.Entity.ToString(), validationError.ErrorMessage);
+                        //raise a new exception inserting the current one as the InnerException
+                        logger.Error(message);
+                    }
+                }
+                throw raise;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+                throw ex;
+            }
 
+            Response.Redirect("Details?csid=" + courseId);
         }
     }
 }
