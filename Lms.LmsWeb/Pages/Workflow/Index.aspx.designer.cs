@@ -13,21 +13,21 @@ namespace Lms.LmsWeb.Pages.Workflow {
     public partial class Index {
         
         /// <summary>
-        /// GradeRepeater control.
+        /// ActiveRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater GradeRepeater;
+        protected global::System.Web.UI.WebControls.Repeater ActiveRepeater;
         
         /// <summary>
-        /// CertificateRepeater control.
+        /// ClosedRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater CertificateRepeater;
+        protected global::System.Web.UI.WebControls.Repeater ClosedRepeater;
     }
 }

@@ -12,7 +12,14 @@ namespace Lms.LmsWeb.Pages.Workflow
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                ActiveRepeater.DataSource = WorkflowService.LoadActiveTasks(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id);
+                ActiveRepeater.DataBind();
 
+                ClosedRepeater.DataSource = WorkflowService.LoadClosedTasks(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id);
+                ClosedRepeater.DataBind();
+            }
         }
     }
 }

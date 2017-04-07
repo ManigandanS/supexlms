@@ -13,7 +13,8 @@ namespace Lms.Domain.Models.Workflows
     public enum WorkflowTypeEnum
     {
         ExternalCourseTake,
-        InternalCourseTake,
+        ExternalCourseResult,
+        InternalCourseTake,        
     }
 
     public enum WorkflowStatusEnum
@@ -38,7 +39,7 @@ namespace Lms.Domain.Models.Workflows
             this.WorkflowSteps = new HashSet<WorkflowStep>();
         }
 
-        public Workflow(string companyId, string requestorId, string comment, WorkflowTypeEnum type) : this()
+        public Workflow(string companyId, string requestorId, string subject, string comment, WorkflowTypeEnum type) : this()
         {
             this.CompanyId = companyId;
             this.WorkflowType = type;
@@ -48,6 +49,7 @@ namespace Lms.Domain.Models.Workflows
             this.RequestTs = DateTime.UtcNow;
             this.NextStep = 1;
             this.Comment = comment;
+            this.Subject = subject;
         }
 
         [Key]
@@ -64,6 +66,9 @@ namespace Lms.Domain.Models.Workflows
         public WorkflowStatusEnum WorkflowStatus { get; set; }
 
         public WorkflowProcessStatusEnum WorkflowProcessStatus { get; set; }
+
+        [Required]
+        public string Subject { get; set; }
 
         [Required]
         [StringLength(128)]

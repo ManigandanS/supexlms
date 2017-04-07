@@ -85,11 +85,9 @@
                                             <td><%# Eval("SessionStart") %> ~ <%# Eval("SessionEnd") %></td>
                                             <td><%# Eval("EnrollStart") %> ~ <%# Eval("EnrollEnd") %></td>
                                             <td><%# Eval("Cost") %></td>
-                                            <td style="text-align: right;">
-                                                <asp:HyperLink ID="EnrollLink" runat="server" Width="80">
-                                                    <asp:Literal ID="EnrollStatus" runat="server"></asp:Literal>
-                                                </asp:HyperLink>
-                                                <asp:Button ID="EnrollBtn" runat="server" Width="80" Text="Enroll" CssClass="btn btn-primary btn-sm" OnCommand="EnrollBtn_Command" CommandArgument='<%# Eval("Id") %>' />
+                                            <td style="text-align: center; width: 5%;">
+                                                <asp:Literal ID="EnrollText" runat="server"></asp:Literal>                                                
+                                                <asp:Button ID="EnrollBtn" runat="server" style="margin: 0; min-width: 80px;" Text="Enroll" CssClass="btn btn-primary btn-sm" OnCommand="EnrollBtn_Command" CommandArgument='<%# Eval("Id") %>' />
                                             </td>
                                         </tr>
                                     </ItemTemplate>

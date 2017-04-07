@@ -17,10 +17,20 @@ namespace Lms.Domain.Services.Enrolments
         protected IPaymentService paymentService;
         static Logger logger = LogManager.GetCurrentClassLogger();
 
+        private EnrolServiceImpl()
+        {
+
+        }
+
         public EnrolServiceImpl(IUnitOfWork unitOfWork, IPaymentService paymentService)
         {
             this.unitOfWork = unitOfWork;
             this.paymentService = paymentService;
+        }
+
+        public void Test()
+        {
+            logger.Info("TEST RESULT................");
         }
 
         public void EnrollUser(string userId, string sessionId)
@@ -33,22 +43,26 @@ namespace Lms.Domain.Services.Enrolments
 
         public void ChargeSession(string userId, string sessionId, string cardNumber, string expireYear, string expireMonth, string cvv2)
         {
-            var session = unitOfWork.SessionRepository.GetById(sessionId);
-            if (session.Cost != null && session.Cost > 0)
+            try
             {
-                try
+                logger.Info("userId: {0}, sessionId: {1}, cvv2: {2}", userId, sessionId, cvv2);
+
+                var session = unitOfWork.SessionRepository.GetById(sessionId);
+                if (session == null)
+                    logger.Error("request session is null");
+
+                if (session != null && session.Cost != null && session.Cost > 0)
                 {
+
                     paymentService.Charge((int)(session.Cost.Value * 100), "usd", "", cardNumber, expireYear, expireMonth, cvv2);
 
                     EnrollUser(userId, sessionId);
-
                 }
-                catch (PaymentException pex)
-                {
-                    logger.Error(pex.ToString());
-                    throw pex;
-                }
-
+            }
+            catch (PaymentException pex)
+            {
+                logger.Error(pex.ToString());
+                throw pex;
             }
         }
 

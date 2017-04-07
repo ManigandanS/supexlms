@@ -14,8 +14,7 @@ namespace Lms.Domain.Models.Users
     public enum EnrollStatusEnum
     {
         Enrolled,
-        Withdrawn,
-        Pending
+        Withdrawn
     }
 
     public enum EnrollResultEnum

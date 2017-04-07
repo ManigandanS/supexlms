@@ -95,6 +95,10 @@
     <Compile Include="Migrations\201704021725257_Workflow.Designer.cs">
       <DependentUpon>201704021725257_Workflow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201704071651585_Workflow-Subject-Add.cs" />
+    <Compile Include="Migrations\201704071651585_Workflow-Subject-Add.Designer.cs">
+      <DependentUpon>201704071651585_Workflow-Subject-Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Certificates\Certificate.cs" />
     <Compile Include="Models\Commons\Configuration.cs" />
@@ -203,6 +207,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201704021725257_Workflow.resx">
       <DependentUpon>201704021725257_Workflow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201704071651585_Workflow-Subject-Add.resx">
+      <DependentUpon>201704071651585_Workflow-Subject-Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

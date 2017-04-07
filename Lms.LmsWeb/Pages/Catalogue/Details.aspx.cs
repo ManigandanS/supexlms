@@ -50,33 +50,15 @@ namespace Lms.LmsWeb.Catalogue
                 var session = e.Item.DataItem as Session;
                 var enrollButton = e.Item.FindControl("EnrollBtn");
 
-                Literal enrollStatus = (Literal)e.Item.FindControl("EnrollStatus");
-                HyperLink enrollLink = (HyperLink)e.Item.FindControl("EnrollLink");
+                Literal enrollText = (Literal)e.Item.FindControl("EnrollText");
 
-                if (session.IsEnrolledUser(SessionVariable.Current.User.Id))
+                string message = string.Empty;
+                bool canEnrol = session.CanEnrolCourse(SessionVariable.Current.User.Id, out message);
+                logger.Info("canEnrol: {0}, message: {1}", canEnrol, message);
+                if (!canEnrol)
                 {
-
-                    enrollStatus.Text = session.GetEnrollStatus(SessionVariable.Current.User.Id);
-                    if (enrollStatus.Text == EnrollStatusEnum.Enrolled.ToString())
-                    {
-                        enrollLink.CssClass = "btn btn-success btn-sm";
-                    }
-
-                    if (enrollStatus.Text == EnrollStatusEnum.Withdrawn.ToString())
-                    {
-                        enrollLink.CssClass = "btn btn-warning btn-sm";
-                    }
-
+                    enrollText.Text = message;
                     enrollButton.Visible = false;
-                }
-                else
-                {
-                    if (session.SessionEnd < DateTime.UtcNow || session.EnrollEnd < DateTime.UtcNow || session.EnrollStart > DateTime.UtcNow)
-                    {
-                        enrollStatus.Text = "N/A";
-                        enrollLink.CssClass = "btn btn-danger btn-sm";
-                        enrollButton.Visible = false;
-                    }
                 }
             }
         }

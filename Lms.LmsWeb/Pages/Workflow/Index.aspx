@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Transcript</h2>
+                    <h2>Workflow</h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -17,33 +17,35 @@
 
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#gradeRecord" aria-controls="home" role="tab" data-toggle="tab">Grade</a></li>
-                                    <li role="presentation"><a href="#certificateRecord" aria-controls="profile" role="tab" data-toggle="tab">Certificate</a></li>
+                                    <li role="presentation" class="active"><a href="#activeRecord" aria-controls="home" role="tab" data-toggle="tab">Active</a></li>
+                                    <li role="presentation"><a href="#closedRecord" aria-controls="profile" role="tab" data-toggle="tab">Closed</a></li>
                                 </ul>
 
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    <div role="tabpanel" class="tab-pane fade in active" id="gradeRecord">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="activeRecord">
                                         
                                         <div>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Course Name</th>
-                                                        <th>Completed Date</th>
-                                                        <th>Result</th>
+                                                        <th>Subject</th>
+                                                        <th>Status</th>
+                                                        <th>Requestor</th>
+                                                        <th>Request Date</th>
                                                         <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <asp:Repeater ID="GradeRepeater" runat="server">
+                                                    <asp:Repeater ID="ActiveRepeater" runat="server">
                                                         <ItemTemplate>
                                                             <tr>
-                                                                <td><%# Eval("Session.Course.Name") %></td>
-                                                                <td><%# Eval("CompletedTs") %></td>
-                                                                <td><%# Eval("Result") %></td>
+                                                                <td><%# Eval("Subject") %></td>
+                                                                <td><%# Eval("WorkflowProcessStatus") %></td>
+                                                                <td><%# Eval("Requestor.DecryptedFullName") %></td>
+                                                                <td><%# Eval("RequestTs") %></td>
                                                                 <td style="text-align: right;">
-                                                                    <a href='/Pages/Course/Curriculum?enid=<%# Eval("Id") %>' class="btn btn-primary btn-sm">Open</a>
+                                                                    <a href='Review?wkid=<%# Eval("Id") %>' class="btn btn-primary btn-sm">Review</a>
                                                                 </td>
                                                             </tr>
                                                         </ItemTemplate>
@@ -54,24 +56,30 @@
                                         </div>
                                     </div>
 
-                                    <div role="tabpanel" class="tab-pane" id="certificateRecord">
+                                    <div role="tabpanel" class="tab-pane" id="closedRecord">
                                         
                                         <div>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
-                                                        <th>Certificate Name</th>
-                                                        <th>Issue Date</th>
-                                                        <th>Expiry Date</th>
+                                                        <th>Subject</th>
+                                                        <th>Status</th>
+                                                        <th>Requestor</th>
+                                                        <th>Request Date</th>
+                                                        <th></th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <asp:Repeater ID="CertificateRepeater" runat="server">
+                                                    <asp:Repeater ID="ClosedRepeater" runat="server">
                                                         <ItemTemplate>
                                                             <tr>
-                                                                <td><%# Eval("Certificate.Name") %></td>
-                                                                <td><%# Eval("IssuedTs") %></td>
-                                                                <td><%# Eval("ExpireTs") %></td>
+                                                                <td><%# Eval("Subject") %></td>
+                                                                <td><%# Eval("WorkflowProcessStatus") %></td>
+                                                                <td><%# Eval("Requestor") %></td>
+                                                                <td><%# Eval("RequestTs") %></td>
+                                                                <td style="text-align: right;">
+                                                                    <a href='Review?wkid=<%# Eval("Id") %>' class="btn btn-primary btn-sm">Review</a>
+                                                                </td>
                                                             </tr>
                                                         </ItemTemplate>
                                                     </asp:Repeater>

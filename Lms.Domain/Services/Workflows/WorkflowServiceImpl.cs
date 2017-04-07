@@ -25,22 +25,17 @@ namespace Lms.Domain.Services.Workflows
             this.unitOfWork = unitOfWork;
         }
 
-        public Workflow RequestApproval(string companyId, string requestorId, string comment, WorkflowTypeEnum type, string sessionId)
+        public Workflow RequestApproval(string companyId, string requestorId, string subject, string comment, WorkflowTypeEnum type, string sessionId)
         {
             if (type == WorkflowTypeEnum.ExternalCourseTake)
             {
-                Workflow workflow = new SessionWorkflow(companyId, requestorId, comment, type, sessionId);
+                Workflow workflow = new SessionWorkflow(companyId, requestorId, subject, comment, type, sessionId);
                 User user = unitOfWork.UserRepository.GetById(requestorId);
                 ICreateWorkflowStep stepGen = new ManagerWorkflowStep(user);
                 foreach (var step in stepGen.Create(workflow.Id))
                     workflow.WorkflowSteps.Add(step);
                 
                 unitOfWork.WorkflowRepository.Insert(workflow);
-
-                var enrollment = new Enrollment(requestorId, sessionId);
-                enrollment.EnrollStatus = EnrollStatusEnum.Pending;
-                unitOfWork.EnrollmentRepository.Insert(enrollment);
-
                 unitOfWork.SaveChanges();
                 return workflow;
             }
@@ -56,6 +51,25 @@ namespace Lms.Domain.Services.Workflows
         public void DeclineRequest(string companyId, string workflowStepId, string userId, string comment)
         {
 
+        }
+
+        public IEnumerable<Workflow> LoadActiveTasks(string companyId, string userId)
+        {
+            IEnumerable<Workflow> workflows = unitOfWork.WorkflowRepository.GetAllAsNoTracking()
+                .Where(x => x.CompanyId == companyId && x.WorkflowProcessStatus == WorkflowProcessStatusEnum.Pending && x.WorkflowStatus == WorkflowStatusEnum.Requested)
+                .SelectMany(x => x.WorkflowSteps)
+                .Where(x => x.UserId == userId && x.Step == x.Workflow.NextStep).Select(x => x.Workflow).ToList();
+
+            return workflows;
+        }
+
+        public IEnumerable<Workflow> LoadClosedTasks(string companyId, string userId)
+        {
+            IEnumerable<Workflow> workflows = unitOfWork.WorkflowRepository.GetAllAsNoTracking()
+                .Where(x => x.CompanyId == companyId).SelectMany(x => x.WorkflowSteps)
+                .Where(x => (x.UserId == userId || x.ApprovedBy == userId) && (x.Step < x.Workflow.NextStep || x.Workflow.NextStep == null)).Select(x => x.Workflow).ToList();
+
+            return workflows;
         }
     }
 }

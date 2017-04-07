@@ -18,5 +18,7 @@ namespace Lms.Domain.Services.Enrolments
         Enrollment GetEnrollment(string enrollmentId);
 
         IEnumerable<Enrollment> LoadActiveEnrollments(string userId);
+
+        void Test();
     }
 }

@@ -11,8 +11,13 @@ namespace Lms.Domain.Models.Workflows
 {
     public class SessionWorkflow : Workflow
     {
-        public SessionWorkflow(string companyId, string requestorId, string comment, WorkflowTypeEnum type, string sessionId)
-            : base(companyId, requestorId, comment, type)
+        public SessionWorkflow()
+        {
+
+        }
+
+        public SessionWorkflow(string companyId, string requestorId, string subject, string comment, WorkflowTypeEnum type, string sessionId)
+            : base(companyId, requestorId, subject, comment, type)
         {
             this.SessionId = sessionId;
         }

@@ -47,7 +47,8 @@ namespace Lms.LmsWeb.Pages.Catalogue
         {
             try
             {
-                WorkflowService.RequestApproval(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id, Comment.Text, WorkflowTypeEnum.ExternalCourseTake, sessionId);
+                WorkflowService.RequestApproval(SessionVariable.Current.Company.Id, SessionVariable.Current.User.Id,
+                    "Course taking approval request", Comment.Text, WorkflowTypeEnum.ExternalCourseTake, sessionId);
             }
             catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
             {

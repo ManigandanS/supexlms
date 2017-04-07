@@ -1,6 +1,7 @@
 ﻿using Lms.Domain.Models.Exceptions;
 using Lms.LmsWeb.Models;
 using Ninject;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace Lms.LmsWeb.Catalogue
 {
     public partial class Payment : SecurePage
     {
+        static Logger logger = LogManager.GetCurrentClassLogger();
         protected Lms.Domain.Models.Courses.Session session;
         string sessionId, courseId;
 
@@ -50,9 +52,13 @@ namespace Lms.LmsWeb.Catalogue
 
         protected void PayBtn_Click(object sender, EventArgs e)
         {
+            
+            EnrolService.Test();
             try
             {
-                EnrolService.ChargeSession(SessionVariable.Current.User.Id, session.Id, CardNumber.Text, ExpireYear.SelectedValue, ExpireMonth.SelectedValue, Cvv2.Text);
+                logger.Info("user: {0}, session: {1}, enrol: {2}", SessionVariable.Current.User.Id, sessionId, EnrolService);
+
+                EnrolService.ChargeSession(SessionVariable.Current.User.Id, sessionId, CardNumber.Text, ExpireYear.SelectedValue, ExpireMonth.SelectedValue, Cvv2.Text);
             }
             catch (PaymentException pex)
             {
@@ -62,7 +68,7 @@ namespace Lms.LmsWeb.Catalogue
                 return;
             }
 
-            Response.Redirect("CourseDetails?csid=" + courseId);
+            Response.Redirect("Details?csid=" + courseId);
         }
     }
 }

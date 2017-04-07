@@ -1,5 +1,6 @@
 ﻿using Lms.Domain.Models.Users;
 using Lms.Domain.Models.Workflows;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,6 +13,8 @@ namespace Lms.Domain.Models.Courses
 {
     public class Session
     {
+        static Logger logger = LogManager.GetCurrentClassLogger();
+
         public Session()
         {
             this.Id = Guid.NewGuid().ToString();
@@ -45,10 +48,29 @@ namespace Lms.Domain.Models.Courses
             this.UpdatedTs = DateTime.UtcNow;
         }
 
-        public bool IsEnrolledUser(string userId)
+        public bool CanEnrolCourse(string userId, out string message)
         {
-            return this.Enrollments.Any(x => x.UserId == userId);
+            message = "";
+
+            var enrolled = this.Enrollments.Any(x => x.UserId == userId);
+            var waitApproval = this.SessionWorkflows.Any(x => x.RequestorId == userId &&
+                x.WorkflowProcessStatus == WorkflowProcessStatusEnum.Pending && x.WorkflowStatus == WorkflowStatusEnum.Requested);
+            var deadline = this.EnrollStart > DateTime.UtcNow || this.EnrollEnd < DateTime.UtcNow;
+
+            logger.Info("can enrol? enrolled: {0}, waitApproval: {1}, deadline: {2}", enrolled, waitApproval, deadline);
+            if (enrolled)
+                message = GetEnrollStatus(userId);
+
+            if (waitApproval)
+                message = "Waiting for Approval";
+
+            if (deadline)
+                message = "Deadline has passed";
+
+            return !enrolled && !waitApproval && !deadline;
         }
+
+        
 
         public string GetEnrollStatus(string userId)
         {
